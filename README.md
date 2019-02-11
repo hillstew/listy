@@ -27,8 +27,11 @@ Run `npm test` from the root directory
 - [Hillary Stewart](https://github.com/hillstew)
 
 ### Wireframes:
+#### Homepage
 ![Wireframes-homepage](Listy-homepage-wireframe.png)
+#### Create Note Page
 ![Wireframes-createnote](Listy-createnote-wireframe.png)
+#### Edit Note Page
 ![Wireframes-editnote](Listy-editnote-wireframe.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
