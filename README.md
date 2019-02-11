@@ -1,6 +1,6 @@
 # Listy
 
-Project description
+An app with both front-end and back-end frameworks which allows users to save, edit, and delete notes. The front-end is comprised of React, Redux, and React-Router. Whereas, the back-end is connected via Node and Express. Jest and Supertest are used for testing.
 
 ### Set-Up Frontend:
 Clone this repo  
@@ -15,7 +15,7 @@ Run `npm start` and visit localhost:3000 in your browser
 * CSS/SCSS
 
 ### Testing:
-Jest and Enzyme for front-end testing  
+Jest and Supertest 
 Run `npm test` from the root directory  
 
 ### Original Assignment: 
