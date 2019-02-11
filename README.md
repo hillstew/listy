@@ -1,6 +1,6 @@
 # Listy
 
-An app with both front-end and back-end frameworks which allows users to save, edit, and delete notes. The front-end is comprised of React, Redux, and React-Router. Whereas, the back-end is connected via Node and Express. Jest and Supertest are used for testing.
+An app created with both front-end and back-end frameworks which allows users to save, edit, and delete notes. The front-end is comprised of React, Redux, and React-Router. Whereas, the back-end is built using Node and Express.
 
 ### Set-Up Frontend:
 Clone this repo  
