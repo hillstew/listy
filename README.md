@@ -27,7 +27,7 @@ Run `npm test` from the root directory
 ### Contributors:  
 [Heather Hartley](https://github.com/hlhartley)
 [Karin Ohman](https://github.com/kaohman)
-
+[Hillary Stewart](https://github.com/)
 
 ### Wireframes:
 ![Wireframes]()
