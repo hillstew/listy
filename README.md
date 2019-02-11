@@ -25,9 +25,9 @@ Run `npm test` from the root directory
 [Trapper Keeper](http://frontend.turing.io/projects/trapper-keeper.html)  
 
 ### Contributors:  
-[Heather Hartley](https://github.com/hlhartley)
-[Karin Ohman](https://github.com/kaohman)
-[Hillary Stewart](https://github.com/)
+- [Heather Hartley](https://github.com/hlhartley)
+- [Karin Ohman](https://github.com/kaohman)
+- [Hillary Stewart](https://github.com/)
 
 ### Wireframes:
 ![Wireframes]()
