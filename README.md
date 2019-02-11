@@ -22,13 +22,10 @@ Jest and Enzyme for front-end testing
 Run `npm test` from the root directory  
 
 ### Original Assignment: 
-[Trapper Keeper]()  
+[Trapper Keeper](http://frontend.turing.io/projects/trapper-keeper.html)  
 
 ### Contributors:  
 [Heather Hartley](https://github.com/hlhartley)
-[Heather Hartley](https://github.com/hlhartley)  
-[Heather Hartley](https://github.com/hlhartley)  
-
 
 ### Wireframes:
 ![Wireframes]()
