@@ -7,9 +7,6 @@ Clone this repo
 Run `npm install` from the root directory  
 Run `npm start` and visit localhost:3000 in your browser  
 
-### Preview:
-![screenshot]()
-
 ### Primary Technologies Used:
 * React
 * Redux
@@ -30,8 +27,9 @@ Run `npm test` from the root directory
 - [Hillary Stewart](https://github.com/hillstew)
 
 ### Wireframes:
-![Wireframes]()
-![Wireframes]()
+![Wireframes-homepage](Listy-homepage-wireframe.png)
+![Wireframes-createnote](Listy-createnote-wireframe.png)
+![Wireframes-editnote](Listy-editnote-wireframe.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
