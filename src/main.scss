@@ -1,6 +1,7 @@
 @import './normalize.css';
 @import './variables';
+@import './Components/NotFound/NotFound.scss';
 @import './Containers/NotesSection/NotesSection.scss';
-@import './Containers/App/App.scss';
 @import './Containers/Note/Note.scss';
 @import './Containers/NoteForm/NoteForm.scss';
+@import './Containers/App/App.scss';

@@ -1,0 +1,24 @@
+.overlay-div {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.note-pop-up {
+  position: fixed;
+  width: 400px;
+  min-height: 400px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 50%;
+  top: 50%; 
+  box-shadow: 2px 2px 8px black;
+}
+

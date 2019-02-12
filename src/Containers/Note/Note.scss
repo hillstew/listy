@@ -1,0 +1,53 @@
+h3 {
+  font-family: "Open Sans", sans-serif;
+  margin: 10px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+ul {
+  font-family: "Open Sans", sans-serif;
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.completed-list {
+  margin-top: 30px;
+  color: grey;
+  border-top: 1px solid grey;
+  padding-top: 10px;
+}
+
+.check-box {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-right: 15px;
+  background-color: lightblue;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+    box-shadow: 0 2px 5px grey;
+  }
+}
+
+.completed {
+  background-color: lightgrey;
+  background: url('./images/check.png');
+  background-size: cover;
+  box-shadow: none;
+}
+
+.note-card {
+  width: 280px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px black;
+  padding: 20px;
+}
