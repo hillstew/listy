@@ -7,7 +7,7 @@ const Note = ({note, updateNote}) => {
 
   return (
     <div className='note-card'>
-      <h3>{note.name}</h3>
+      <h3>Note Name</h3>
       <ul>
         <li><div className='check-box'></div>List Item 1</li>
       </ul>
