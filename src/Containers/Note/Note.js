@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateNote } from '../../actions';
 
-const Note = () => {
+const Note = ({note, updateNote}) => {
 
 
   return (
     <div className='note-card'>
-      <h3>Title</h3>
+      <h3>{note.name}</h3>
       <ul>
         <li><div className='check-box'></div>List Item 1</li>
       </ul>
@@ -16,4 +18,8 @@ const Note = () => {
   )
 }
 
-export default Note;
+const mapDispatchToProps = (dispatch) => ({
+  updateNote: (note) => dispatch(updateNote(note)),
+});
+
+export default connect(null, mapDispatchToProps)(Note);

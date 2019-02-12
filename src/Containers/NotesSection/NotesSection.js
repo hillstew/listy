@@ -1,14 +1,23 @@
 import React from 'react';
 import Note from '../Note/Note';
+import { connect } from 'react-redux';
 
-const NotesSection = () => {
+const NotesSection = (props) => {
 
   return (
     <div id='notes-wrapper'>
-      <Note />
+    {
+      props.notes.map(note => {
+        return <Note note={note} key={note.id}/>
+      })
+    }
     </div>
   )
 
 }
 
-export default NotesSection;
+const mapStateToProps = (state) => ({
+  notes: state.notes,
+});
+
+export default connect(mapStateToProps)(NotesSection);
