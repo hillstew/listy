@@ -6,9 +6,6 @@ const NotesSection = () => {
   return (
     <div id='notes-wrapper'>
       <Note />
-      <Note />
-      <Note />
-      <Note />
     </div>
   )
 
