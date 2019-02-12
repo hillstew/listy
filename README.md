@@ -28,11 +28,11 @@ Run `npm test` from the root directory
 
 ### Wireframes:
 #### Homepage
-![Wireframes-homepage](Listy-homepage-wireframe.png)
+![Wireframes-homepage](./public/assets/Listy-homepage-wireframe.png)
 #### Create Note Page
-![Wireframes-createnote](Listy-createnote-wireframe.png)
+![Wireframes-createnote](./public/assets/Listy-createnote-wireframe.png)
 #### Edit Note Page
-![Wireframes-editnote](Listy-editnote-wireframe.png)
+![Wireframes-editnote](./public/assets/Listy-editnote-wireframe.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
