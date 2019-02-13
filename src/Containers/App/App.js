@@ -5,17 +5,18 @@ import NoteForm from "../NoteForm/NoteForm"
 import NotFound from "../../Components/NotFound/NotFound"
 import { connect } from "react-redux"
 import { setNotes, setLoading, setError } from "../../actions"
+import API from '../../utils/api';
 
 class App extends Component {
   async componentDidMount() {
     const { setNotes, setLoading } = this.props
     try {
-      const response = await fetch("http://localhost:3001/api/v1/notes")
-      const notes = await response.json()
+      const notes = await API.fetchData('notes', 'GET');
+      await console.log(notes)
       setNotes(notes)
       setLoading(false)
     } catch (error) {
-      setError(error.message)
+      setError(error)
     }
   }
 
@@ -50,8 +51,6 @@ class App extends Component {
     )
   }
 }
-
-
 
 const mapDispatchToProps = (dispatch) => ({
   setNotes: (notes) => dispatch(setNotes(notes)),

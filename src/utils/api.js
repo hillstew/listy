@@ -1,11 +1,15 @@
-const fetchData = async (path, data = '', method) => {
-  const response = await fetch(`http://localhost:3001/api/v1/${path}`, {
-    method: method,
-    body: JSON.stringify(data),
-    headers: {
-      'Content-type': 'application/json'
-    }
-  });
+const fetchData = async (path, method, data = null) => {
+  let params = data ? 
+    { 
+      method: method,
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    } :
+    data;
+  
+  const response = await fetch(`http://localhost:3001/api/v1/${path}`, params);
 
   if (response.ok) {
     return response.json();

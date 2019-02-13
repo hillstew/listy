@@ -7,12 +7,16 @@ const Note = ({note, updateNote}) => {
 
   return (
     <div className='note-card'>
-      <h3>Note Name</h3>
+      <h3>{note.title}</h3>
       <ul>
-        <li><div className='check-box'></div>List Item 1</li>
+        {
+          note.issues.filter(issue => !issue.completed).map(issue => <li><span><i class="fas fa-square"></i> {issue.body}</span> <i class="fas fa-times"></i></li>)
+        }
       </ul>
       <ul className='completed-list'>
-        <li><div className='check-box completed'></div>List Item 2</li>
+        {
+          note.issues.filter(issue => issue.completed).map(issue => <li><span><i class="fas fa-check-square"></i> {issue.body}</span> <i class="fas fa-times"></i></li>)
+        }
       </ul>
     </div>
   )
