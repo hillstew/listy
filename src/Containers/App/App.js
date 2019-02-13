@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { NavLink, Route } from "react-router-dom"
+import { NavLink, Route, Switch, withRouter } from "react-router-dom"
 import NotesSection from "../NotesSection/NotesSection"
 import NoteForm from "../NoteForm/NoteForm"
 import NotFound from "../../Components/NotFound/NotFound"
@@ -12,7 +12,6 @@ class App extends Component {
     const { setNotes, setLoading } = this.props
     try {
       const notes = await API.fetchData('notes', 'GET');
-      await console.log(notes)
       setNotes(notes)
       setLoading(false)
     } catch (error) {
@@ -32,10 +31,12 @@ class App extends Component {
             <i className="fas fa-plus-circle new-note-icon"></i>
           </NavLink>
         </header>
-        <Route exact path="/" component={NotesSection} />
-        <Route exact path="/new-note" component={NoteForm} />
+        <Switch>
+          <Route exact path="/" component={NotesSection} />
+          {/* <Route component={NotFound} /> */}
+        </Switch>
+        <Route path="/new-note" component={NoteForm} />
         <Route
-          exact
           path="/notes/:id"
           render={({ match }) => {
             const id = match.params
@@ -58,4 +59,4 @@ const mapDispatchToProps = (dispatch) => ({
   setError: (error) => dispatch(setError(error))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));

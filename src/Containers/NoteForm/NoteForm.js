@@ -4,29 +4,6 @@ import { setError } from '../../actions';
 
 const NoteForm = (props) => {
 
-  const note = {
-    id: 1,
-    title: "Trapper Keeper",
-    issues: [
-        {
-            body: "Finish project",
-            completed: false
-        },
-        {
-            body: "Start project",
-            completed: true
-        },
-        {
-            body: "Test project",
-            completed: false
-        },
-        {
-            body: "Deploy to Heroku",
-            completed: true
-        }
-    ]
-  }
-
   return (
     <div className='overlay-div'>
       <div className='note-pop-up'>
