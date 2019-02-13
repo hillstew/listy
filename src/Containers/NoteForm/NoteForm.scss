@@ -22,3 +22,27 @@
   box-shadow: 2px 2px 8px black;
 }
 
+.form-add-icon {
+  text-align: center;
+  color: #3caea3;
+  font-size: 25px;
+  text-shadow: 0px 4px 4px #d0d0d0;
+
+  &:hover {
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fa-trash-alt,
+.fa-save {
+  color: #3183c9;
+  font-size: 25px;
+  text-shadow: 0px 4px 4px #d0d0d0;
+
+}
+

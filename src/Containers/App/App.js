@@ -27,8 +27,8 @@ class App extends Component {
           <NavLink id="title" to="/">
             <h1>Listy</h1>
           </NavLink>
-          <NavLink id="add-note-link" to="/new-note">
-            <i className="fas fa-plus-circle" />
+          <NavLink id='add-note-link' to='/new-note'>
+            <i className="fas fa-plus-circle new-note-icon"></i>
           </NavLink>
         </header>
         <Route exact path="/" component={NotesSection} />
