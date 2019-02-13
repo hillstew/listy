@@ -1,22 +1,19 @@
-const getData = async (path) => {
+const fetchData = async (path, data = '', method) => {
+  const response = await fetch(`http://localhost:3001/api/v1/${path}`, {
+    method: method,
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  });
 
-}
-
-const postData = async (path, data) => {
-
-}
-
-const putData = async (path, data) => {
-
-}
-
-const deleteData = async (path) => {
-
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw Error(`Error fetching data: ${response.statusText}`);
+  }
 }
 
 export default {
-  getData,
-  postData,
-  putData,
-  deleteData,
+  fetchData,
 }
