@@ -1,43 +1,74 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setError } from '../../actions';
+import API from '../../utils/api';
 
 class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.props.note
+      id: this.props.id,
+      title: this.props.title,
+      issues: this.props.issues
     }
   }
 
-  handleChange = (e) => {
-    const index = this.state.issues.findIndex((issue) => issue.id == e.target.id)
-    console.log('that', index)
-    const issues = this.state.issues.slice()
-    issues[index].body = e.target.value
-    this.setState({ issues })
+  handleBodyChange = (e) => {
+    const index = this.state.issues.findIndex((issue) => issue.id == e.target.parentElement.parentElement.id);
+    const issues = this.state.issues.slice();
+    issues[index].body = e.target.value;
+    this.setState({ issues });
   } 
 
+  handleTitleChange = (e) => {
+    this.setState({ title: e.target.value });
+  } 
+
+  toggleIssueCompletion = (e) => {
+    const index = this.state.issues.findIndex((issue) => issue.id == e.target.parentElement.parentElement.id);
+    const issues = this.state.issues.slice();
+    issues[index].completed = !issues[index].completed;
+    this.setState({ issues });
+  } 
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { setError } = this.props;
+    try {
+      this.formRef.reset();
+    } catch (error) {
+      setError(error)
+    }
+  }
+
+  showIssues = (completed) => {
+    const { issues } = this.state;
+    return issues.filter(issue => issue.completed === completed).map(issue =>
+      <li key={issue.id} id={issue.id}>
+        <span>
+          <i onClick={this.toggleIssueCompletion} className="fas fa-square"></i>
+          <input onChange={this.handleBodyChange} value={issue.body}></input>
+        </span>
+        <i className="fas fa-times"></i>
+      </li>
+    )
+  }
+
   render() {
-    const { title, issues } = this.state
+    const { title } = this.state;
+    const incompleteIssues = this.showIssues(false);
+    const completeIssues = this.showIssues(true);
+
     return (
       <div className='overlay-div'>
-        <form className='note-pop-up'>
-          <h3>{title}</h3>
-          <ul>
-            {
-              issues.filter(issue => !issue.completed).map(issue => <li><span><i class="fas fa-square"></i> <input id={issue.id} onChange={this.handleChange} value={issue.body}></input></span> <i class="fas fa-times"></i></li>)
-            }
-          </ul>
+        <form className='note-pop-up' onSubmit={this.handleSubmit} ref={(el) => this.formRef = el}>
+          <input onChange={this.handleTitleChange} value={title}></input>
+          <ul>{incompleteIssues}</ul>
           <i className="fas fa-plus-circle form-add-icon"></i>
           <h4>Completed</h4>
-          <ul>
-            {
-              issues.filter(issue => issue.completed).map(issue => <li><span><i class="fas fa-check-square"></i> <span contentEditable={true}>{issue.body}</span></span> <i class="fas fa-times"></i></li>)
-            }
-          </ul>
-          <i class="fas fa-save"></i>
-          <i class="fas fa-trash-alt"></i>
+          <ul>{completeIssues}</ul>
+          <input className='submit-button' type="submit" value='Save'></input>
+          <i className="fas fa-trash-alt"></i>
         </form>
       </div>
     )
