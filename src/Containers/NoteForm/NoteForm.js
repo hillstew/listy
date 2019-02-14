@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
+import { deleteNote } from '../../thunks/deleteNote';
 import { postNote } from '../../thunks/postNote';
 import { putNote } from '../../thunks/putNote';
-import { deleteNote } from '../../thunks/deleteNote';
 import Issue from '../../Components/Issue/Issue';
 
-class NoteForm extends Component {
+export class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,11 +114,11 @@ class NoteForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   popup: state.popup
 });
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   putNote: (note) => dispatch(putNote(note)),
   postNote: (note) => dispatch(postNote(note)),
   deleteNote: (id) => dispatch(deleteNote(id)),
