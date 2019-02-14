@@ -10,7 +10,7 @@ class NoteForm extends Component {
     super(props);
     this.state = {
       showPopUp: true,
-      id: this.props.id || -1,
+      id: this.props.id || '',
       title: this.props.title || '',
       issues: this.props.issues || [],
     }
@@ -56,7 +56,7 @@ class NoteForm extends Component {
     const { setError } = this.props;
     const { id, title, issues } = this.state;
     try {
-      id === -1 ?
+      id === '' ?
         await API.fetchData('notes', 'POST', { title, issues }) :
         await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
       this.closePopUp();
@@ -66,7 +66,7 @@ class NoteForm extends Component {
   }
 
   removeNote = () => {
-    if (this.props.id !== -1) {
+    if (this.props.id !== '') {
       this.deleteNote();
     }
     this.closePopUp();
