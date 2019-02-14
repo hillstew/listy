@@ -14,13 +14,13 @@ class App extends Component {
   }
 
   render() {
-    const { notes, loading } = this.props
+    const { notes, loading, togglePopup } = this.props
     return (
       <div>
         {loading && <h1>Loading notes...</h1>}
         {!loading && (
           <Fragment>
-            <Header />
+            <Header togglePopup={togglePopup}/>
             <Switch>
               <Route exact path="/" component={NotesSection} />
               {/* <Route component={NotFound} /> */}
