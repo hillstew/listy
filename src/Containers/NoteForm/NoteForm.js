@@ -8,29 +8,47 @@ class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      saved: false,
+      showPopUp: true,
       id: this.props.id,
       title: this.props.title,
       issues: this.props.issues
     }
   }
 
-  handleBodyChange = (e) => {
-    const index = this.state.issues.findIndex((issue) => issue.id == e.target.parentElement.parentElement.id);
-    const issues = this.state.issues.slice();
-    issues[index].body = e.target.value;
-    this.setState({ issues });
-  } 
+  getIndex = (id) => {
+    return this.state.issues.findIndex((issue) => issue.id == id);
+  }
+
+  createIssuesCopy = () => {
+    return this.state.issues.slice();
+  }
 
   handleTitleChange = (e) => {
     this.setState({ title: e.target.value });
   } 
 
-  toggleIssueCompletion = (e) => {
-    const index = this.state.issues.findIndex((issue) => issue.id == e.target.parentElement.parentElement.id);
-    const issues = this.state.issues.slice();
-    issues[index].completed = !issues[index].completed;
+  setIssuesInState = (issues) => {
     this.setState({ issues });
+  }
+
+  closePopUp = () => {
+    this.formRef.reset();
+    this.setState({ showPopUp: false });
+    this.props.getNotes();
+  }
+
+  handleBodyChange = (e) => {
+    const index = this.getIndex(e.target.parentElement.parentElement.id);
+    const issues = this.createIssuesCopy();
+    issues[index].body = e.target.value;
+    this.setIssuesInState(issues);
+  } 
+
+  toggleIssueCompletion = (e) => {
+    const index = this.getIndex(e.target.parentElement.parentElement.id);
+    const issues = this.createIssuesCopy();
+    issues[index].completed = !issues[index].completed;
+    this.setIssuesInState(issues);
   } 
 
   handleSubmit = async (e) => {
@@ -41,9 +59,22 @@ class NoteForm extends Component {
       id === -1 ?
         await API.fetchData('notes', 'POST', { title, issues }) :
         await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
-      this.formRef.reset();
-      await this.setState({ saved: true });
-      this.props.getNotes();
+      this.closePopUp();
+    } catch (error) {
+      setError(error)
+    }
+  }
+
+  removeNote = () => {
+    if (this.props.id !== -1) {
+      this.deleteNote();
+    }
+    this.closePopUp();
+  }
+
+  deleteNote = async () => {
+    try {
+      await API.fetchData(`notes/${this.state.id}`, 'DELETE');
     } catch (error) {
       setError(error)
     }
@@ -51,17 +82,17 @@ class NoteForm extends Component {
 
   addIssue = (e) => {
     e.preventDefault();
-    const issues = this.state.issues.slice();
+    const issues = this.createIssuesCopy();
     issues.push({ id: Date.now(), body: '', completed: false });
-    this.setState({ issues });
+    this.setIssuesInState(issues);
   }
 
   removeIssue = (e) => {
     e.preventDefault();
-    const index = this.state.issues.findIndex((issue) => issue.id == e.target.parentElement.id);
-    const issues = this.state.issues.slice();
+    const index = this.getIndex(e.target.parentElement.id);
+    const issues = this.createIssuesCopy();
     issues.splice(index, 1);
-    this.setState({ issues });
+    this.setIssuesInState(issues);
   }
 
   showIssues = (completed) => {
@@ -78,11 +109,11 @@ class NoteForm extends Component {
   }
 
   render() {
-    const { title, saved } = this.state;
+    const { title, showPopUp } = this.state;
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
-    if (saved) {
+    if (!showPopUp) {
       return <Redirect to={'/'} />
     } else {
       return (
@@ -94,7 +125,7 @@ class NoteForm extends Component {
             <h4>Completed</h4>
             <ul>{completeIssues}</ul>
             <input className='submit-button' type="submit" value='Save'></input>
-            <i className="fas fa-trash-alt"></i>
+            <button onClick={this.removeNote}><i className="fas fa-trash-alt"></i></button>
           </form>
         </div>
       )
