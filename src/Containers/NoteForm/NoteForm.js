@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setError } from '../../actions';
-import API from '../../utils/api';
 import shortid from 'shortid';
+import { postNote } from '../../thunks/postNote';
+import { putNote } from '../../thunks/putNote';
+import { deleteNote } from '../../thunks/deleteNote';
 import Issue from '../../Components/Issue/Issue';
 
 class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPopUp: true,
       id: this.props.id || '',
       title: this.props.title || '',
       issues: this.props.issues || [],
@@ -26,16 +26,12 @@ class NoteForm extends Component {
   }
 
   handleTitleChange = (e) => {
+    e.preventDefault();
     this.setState({ title: e.target.value });
   } 
 
   setIssuesInState = (issues) => {
     this.setState({ issues });
-  }
-
-  closePopUp = () => {
-    this.setState({ showPopUp: false });
-    this.props.fetchNotes();
   }
 
   handleBodyChange = (e) => {
@@ -52,32 +48,17 @@ class NoteForm extends Component {
     this.setIssuesInState(issues);
   } 
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { setError } = this.props;
+    const { putNote, postNote } = this.props;
     const { id, title, issues } = this.state;
-    try {
-      id === '' ?
-        await API.fetchData('notes', 'POST', { title, issues }) :
-        await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
-      this.closePopUp();
-    } catch (error) {
-      setError(error)
-    }
+    id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
   }
 
-  removeNote = () => {
+  removeNote = (e) => {
+    e.preventDefault();
     if (this.props.id !== '') {
-      this.deleteNote();
-    }
-    this.closePopUp();
-  }
-
-  deleteNote = async () => {
-    try {
-      await API.fetchData(`notes/${this.state.id}`, 'DELETE');
-    } catch (error) {
-      setError(error)
+      this.props.deleteNote(this.state.id);
     }
   }
 
@@ -109,11 +90,11 @@ class NoteForm extends Component {
   }
 
   render() {
-    const { title, showPopUp } = this.state;
+    const { title } = this.state;
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
-    if (!showPopUp) {
+    if (!this.props.popup) {
       return <Redirect to={'/'} />
     } else {
       return (
@@ -125,7 +106,7 @@ class NoteForm extends Component {
             <h4>Completed</h4>
             <ul>{completeIssues}</ul>
             <input className='submit-button' type="submit" value='Save'></input>
-            <button onClick={this.removeNote}><i className="fas fa-trash-alt"></i></button>
+            <button onClick={this.removeNote}>Delete</button>
           </form>
         </div>
       )
@@ -133,8 +114,14 @@ class NoteForm extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setError: (error) => dispatch(setError(error)),
+const mapStateToProps = (state) => ({
+  popup: state.popup
 });
 
-export default connect(null, mapDispatchToProps)(NoteForm);
+const mapDispatchToProps = (dispatch) => ({
+  putNote: (note) => dispatch(putNote(note)),
+  postNote: (note) => dispatch(postNote(note)),
+  deleteNote: (id) => dispatch(deleteNote(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);

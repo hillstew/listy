@@ -1,3 +1,4 @@
+import { togglePopup } from '../../actions';
 import React, { Component, Fragment } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import NotesSection from '../NotesSection/NotesSection'
@@ -50,7 +51,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(fetchNotes())
+ fetchNotes: () => dispatch(fetchNotes()),
+ togglePopup: (bool) => dispatch(togglePopup(bool)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
