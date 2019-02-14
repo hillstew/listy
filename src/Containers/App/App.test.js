@@ -1,9 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React, { Component } from 'react'
+import App from './App'
+import { shallow } from 'enzyme'
+import { fetchNotes } from '../../thunks/fetchNotes'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+
+describe('App', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = shallow(<App />)
+  })
+
+  it('should match the correct snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  describe('componentDidMount', () => {
+    it('should call fetchNotes', async () => {})
+  })
+})
