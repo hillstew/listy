@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setError } from '../../actions';
 import API from '../../utils/api';
@@ -7,6 +8,7 @@ class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      saved: false,
       id: this.props.id,
       title: this.props.title,
       issues: this.props.issues
@@ -36,11 +38,12 @@ class NoteForm extends Component {
     const { setError } = this.props;
     const { id, title, issues } = this.state;
     try {
-      const response = id === -1 ?
+      id === -1 ?
         await API.fetchData('notes', 'POST', { title, issues }) :
         await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
       this.formRef.reset();
-      console.log(response)
+      await this.setState({ saved: true });
+      this.props.getNotes();
     } catch (error) {
       setError(error)
     }
@@ -60,23 +63,27 @@ class NoteForm extends Component {
   }
 
   render() {
-    const { title } = this.state;
+    const { title, saved } = this.state;
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
-    return (
-      <div className='overlay-div'>
-        <form className='note-pop-up' onSubmit={this.handleSubmit} ref={(el) => this.formRef = el}>
-          <input onChange={this.handleTitleChange} value={title}></input>
-          <ul>{incompleteIssues}</ul>
-          <i className="fas fa-plus-circle form-add-icon"></i>
-          <h4>Completed</h4>
-          <ul>{completeIssues}</ul>
-          <input className='submit-button' type="submit" value='Save'></input>
-          <i className="fas fa-trash-alt"></i>
-        </form>
-      </div>
-    )
+    if (saved) {
+      return <Redirect to={'/'} />
+    } else {
+      return (
+        <div className='overlay-div'>
+          <form className='note-pop-up' onSubmit={this.handleSubmit} ref={(el) => this.formRef = el}>
+            <input onChange={this.handleTitleChange} value={title}></input>
+            <ul>{incompleteIssues}</ul>
+            <i className="fas fa-plus-circle form-add-icon"></i>
+            <h4>Completed</h4>
+            <ul>{completeIssues}</ul>
+            <input className='submit-button' type="submit" value='Save'></input>
+            <i className="fas fa-trash-alt"></i>
+          </form>
+        </div>
+      )
+    }
   }
 }
 

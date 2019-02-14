@@ -8,7 +8,8 @@ import { setNotes, setLoading, setError } from "../../actions"
 import API from '../../utils/api';
 
 class App extends Component {
-  async componentDidMount() {
+  
+  getNotes = async () => {
     const { setNotes, setLoading } = this.props
     try {
       const notes = await API.fetchData('notes', 'GET');
@@ -17,6 +18,10 @@ class App extends Component {
     } catch (error) {
       setError(error)
     }
+  }
+
+  componentDidMount() {
+    this.getNotes();
   }
 
   render() {
@@ -40,14 +45,21 @@ class App extends Component {
             <Route exact path="/" component={NotesSection} />
             {/* <Route component={NotFound} /> */}
           </Switch>
-          <Route path="/new-note" render={() => <NoteForm id={-1} title={'Add a note title'} issues={[]} />} />
+          <Route path="/new-note" render={() => 
+            <NoteForm 
+              id={-1} 
+              title={'Add a note title'} 
+              issues={[]} 
+              getNotes={this.getNotes}
+            />}
+          />
           <Route
             path="/notes/:id"
             render={({ match }) => {
               const { id } = match.params
               const note = notes.find((note) => note.id === parseInt(id))
               if (note) {
-                return <NoteForm {...note}/>
+                return <NoteForm {...note} getNotes={this.getNotes}/>
               } else {
                 return <NotFound />
               }

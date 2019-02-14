@@ -10,12 +10,12 @@ const Note = ({note, updateNote}) => {
       <h3>{note.title}</h3>
       <ul>
         {
-          note.issues.filter(issue => !issue.completed).map(issue => <li><span><i class="fas fa-square"></i> {issue.body}</span> <i class="fas fa-times"></i></li>)
+          note.issues.filter(issue => !issue.completed).map(issue => <li><span><i className="fas fa-square"></i> {issue.body}</span> <i className="fas fa-times"></i></li>)
         }
       </ul>
       <ul className='completed-list'>
         {
-          note.issues.filter(issue => issue.completed).map(issue => <li><span><i class="fas fa-check-square"></i> {issue.body}</span> <i class="fas fa-times"></i></li>)
+          note.issues.filter(issue => issue.completed).map(issue => <li><span><i className="fas fa-check-square"></i> {issue.body}</span> <i className="fas fa-times"></i></li>)
         }
       </ul>
     </div>
