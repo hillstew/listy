@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setError } from '../../actions';
 import API from '../../utils/api';
 import shortid from 'shortid';
-import Issue from '../Issue/Issue';
+import Issue from '../../Components/Issue/Issue';
 
 class NoteForm extends Component {
   constructor(props) {
