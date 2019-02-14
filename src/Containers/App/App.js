@@ -46,9 +46,6 @@ class App extends Component {
           </Switch>
           <Route path="/new-note" render={() => 
             <NoteForm 
-              id={-1} 
-              title={'Add a note title'} 
-              issues={[]} 
               getNotes={this.getNotes}
             />}
           />

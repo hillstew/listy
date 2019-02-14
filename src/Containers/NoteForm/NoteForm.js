@@ -9,9 +9,9 @@ class NoteForm extends Component {
     super(props);
     this.state = {
       showPopUp: true,
-      id: this.props.id,
-      title: this.props.title,
-      issues: this.props.issues
+      id: this.props.id || -1,
+      title: this.props.title || '',
+      issues: this.props.issues || [],
     }
   }
 
@@ -32,7 +32,6 @@ class NoteForm extends Component {
   }
 
   closePopUp = () => {
-    this.formRef.reset();
     this.setState({ showPopUp: false });
     this.props.getNotes();
   }
@@ -118,7 +117,7 @@ class NoteForm extends Component {
     } else {
       return (
         <div className='overlay-div'>
-          <form className='note-pop-up' onSubmit={this.handleSubmit} ref={(el) => this.formRef = el}>
+          <form className='note-pop-up' onSubmit={this.handleSubmit}>
             <input onChange={this.handleTitleChange} value={title}></input>
             <ul>{incompleteIssues}</ul>
             <button onClick={this.addIssue}><i className="fas fa-plus-circle form-add-icon"></i></button>
