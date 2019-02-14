@@ -7,46 +7,76 @@ import { connect } from "react-redux"
 import { fetchNotes } from '../../thunks/fetchNotes'
 
 class App extends Component {
-  async componentDidMount() {
-    this.props.fetchNotes()
+
+  componentDidMount() {
+   this.props.fetchNotes()
+  }
+  
+  getNotes = async () => {
+    const { setNotes, setLoading } = this.props
+    try {
+      const notes = await API.fetchData('notes', 'GET');
+      setNotes(notes)
+      setLoading(false)
+    } catch (error) {
+      setError(error)
+    }
   }
 
   render() {
-    const { notes } = this.props
-    return (
-      <div>
-        <header>
-          <NavLink id="title" to="/">
-            <h1>Listy</h1>
-          </NavLink>
-          <NavLink id='add-note-link' to='/new-note'>
-            <i className="fas fa-plus-circle new-note-icon"></i>
-          </NavLink>
-        </header>
-        <Switch>
-          <Route exact path="/" component={NotesSection} />
-          {/* <Route component={NotFound} /> */}
-        </Switch>
-        <Route path="/new-note" component={NoteForm} />
-        <Route
-          path="/notes/:id"
-          render={({ match }) => {
-            const id = match.params
-            const note = notes.find((note) => note.id == id)
-            if (note) {
-              return <NoteForm />
-            } else {
-              return <NotFound />
-            }
-          }}
-        />
-      </div>
-    )
+    const { notes, loading } = this.props
+    if(loading) {
+      return (
+        <h1>Loading notes...</h1>
+      )
+    } else {
+      return (
+        <div>
+          <header>
+            <NavLink id="title" to="/">
+              <h1>Listy</h1>
+            </NavLink>
+            <NavLink id='add-note-link' to='/new-note'>
+              <i className="fas fa-plus-circle new-note-icon"></i>
+            </NavLink>
+          </header>
+          <Switch>
+            <Route exact path="/" component={NotesSection} />
+            {/* <Route component={NotFound} /> */}
+          </Switch>
+          <Route path="/new-note" render={() => 
+            <NoteForm 
+              id={-1} 
+              title={'Add a note title'} 
+              issues={[]} 
+              getNotes={this.getNotes}
+            />}
+          />
+          <Route
+            path="/notes/:id"
+            render={({ match }) => {
+              const { id } = match.params
+              const note = notes.find((note) => note.id === parseInt(id))
+              if (note) {
+                return <NoteForm {...note} getNotes={this.getNotes}/>
+              } else {
+                return <NotFound />
+              }
+            }}
+          />
+        </div>
+      )
+    }
   }
 }
+
+const mapStateToProps = (state) => ({
+  notes: state.notes,
+  loading: state.loading,
+})
 
 const mapDispatchToProps = (dispatch) => ({
  fetchNotes: () => dispatch(fetchNotes())
 })
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
