@@ -31,11 +31,16 @@ class NoteForm extends Component {
     this.setState({ issues });
   } 
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { setError } = this.props;
+    const { id, title, issues } = this.state;
     try {
+      const response = id === -1 ?
+        await API.fetchData('notes', 'POST', { title, issues }) :
+        await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
       this.formRef.reset();
+      console.log(response)
     } catch (error) {
       setError(error)
     }

@@ -40,7 +40,7 @@ class App extends Component {
             <Route exact path="/" component={NotesSection} />
             {/* <Route component={NotFound} /> */}
           </Switch>
-          {/* <Route path="/new-note" component={NoteForm} /> */}
+          <Route path="/new-note" render={() => <NoteForm id={-1} title={'Add a note title'} issues={[]} />} />
           <Route
             path="/notes/:id"
             render={({ match }) => {
