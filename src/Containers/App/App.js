@@ -4,6 +4,7 @@ import NotesSection from "../NotesSection/NotesSection"
 import NoteForm from "../NoteForm/NoteForm"
 import NotFound from "../../Components/NotFound/NotFound"
 import { connect } from "react-redux"
+import { togglePopup } from '../../actions';
 import { fetchNotes } from '../../thunks/fetchNotes'
 
 class App extends Component {
@@ -11,17 +12,6 @@ class App extends Component {
   componentDidMount() {
    this.props.fetchNotes()
   }
-  
-  // getNotes = async () => {
-  //   const { setNotes, setLoading } = this.props
-  //   try {
-  //     const notes = await API.fetchData('notes', 'GET');
-  //     setNotes(notes)
-  //     setLoading(false)
-  //   } catch (error) {
-  //     setError(error)
-  //   }
-  // }
 
   render() {
     const { notes, loading } = this.props
@@ -36,7 +26,7 @@ class App extends Component {
             <NavLink id="title" to="/">
               <h1>Listy</h1>
             </NavLink>
-            <NavLink id='add-note-link' to='/new-note'>
+            <NavLink onClick={() => this.props.togglePopup(true)} id='add-note-link' to='/new-note'>
               <i className="fas fa-plus-circle new-note-icon"></i>
             </NavLink>
           </header>
@@ -45,7 +35,7 @@ class App extends Component {
             {/* <Route component={NotFound} /> */}
           </Switch>
           <Route path="/new-note" render={() => 
-            <NoteForm fetchNotes={this.props.fetchNotes} />}
+            <NoteForm />}
           />
           <Route
             path="/notes/:id"
@@ -53,7 +43,7 @@ class App extends Component {
               const { id } = match.params
               const note = notes.find((note) => note.id === parseInt(id))
               if (note) {
-                return <NoteForm {...note} fetchNotes={this.props.fetchNotes}/>
+                return <NoteForm {...note}/>
               } else {
                 return <NotFound />
               }
@@ -71,7 +61,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
- fetchNotes: () => dispatch(fetchNotes())
+ fetchNotes: () => dispatch(fetchNotes()),
+ togglePopup: (bool) => dispatch(togglePopup(bool)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

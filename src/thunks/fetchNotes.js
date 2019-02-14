@@ -1,19 +1,15 @@
-import { setLoading, setError, setNotes } from '../actions'
+import { setLoading, setError, setNotes } from '../actions';
+import API from '../utils/api';
 
 export const fetchNotes = () => {
-  const url = 'http://localhost:3001/api/v1/notes';
   return async (dispatch) =>  {
     try {
-      dispatch(setLoading(true))
-      const response = await fetch(url)
-      if(!response.ok) {
-        throw Error(response.statusText)
-      }
-      dispatch(setLoading(false))
-      const notes = await response.json()
-      dispatch(setNotes(notes))
+      dispatch(setLoading(true));
+      const results = await API.fetchData('notes', 'GET');
+      dispatch(setLoading(false));
+      dispatch(setNotes(results));
     } catch (error) {
-      dispatch(setError(error.message))
+      dispatch(setError(error));
     }
   }
 }

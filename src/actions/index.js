@@ -27,3 +27,8 @@ export const setLoading = (loading) => ({
   type: 'SET_LOADING',
   loading,
 });
+
+export const togglePopup = (popup) => ({
+  type: 'TOGGLE_POPUP',
+  popup,
+});
