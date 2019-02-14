@@ -1,5 +1,5 @@
 h3 {
-  font-family: "Open Sans", sans-serif;
+  font-family: $main-font;
   margin: 10px;
   margin-bottom: 20px;
   font-size: 30px;
@@ -7,7 +7,7 @@ h3 {
 }
 
 ul {
-  font-family: "Open Sans", sans-serif;
+  font-family: $main-font;
   list-style-type: none;
   padding-inline-start: 0;
   margin: 10px;
@@ -16,8 +16,8 @@ ul {
 
 .completed-list {
   margin-top: 30px;
-  color: grey;
-  border-top: 1px solid grey;
+  color: $main-grey;
+  border-top: 1px solid $main-grey;
   padding-top: 10px;
 }
 
@@ -26,18 +26,18 @@ ul {
   height: 16px;
   width: 16px;
   margin-right: 15px;
-  background-color: lightblue;
-  box-shadow: 2px 2px 5px grey;
+  background-color: $check-box-color;
+  box-shadow: 2px 2px 5px $main-grey;
   cursor: pointer;
 
   &:hover {
     box-shadow: none;
-    box-shadow: 0 2px 5px grey;
+    box-shadow: 0 2px 5px $main-grey;
   }
 }
 
 .completed {
-  background-color: lightgrey;
+  background-color: $main-light-grey;
   background: url('./images/check.png');
   background-size: cover;
   box-shadow: none;
@@ -46,8 +46,8 @@ ul {
 .note-card {
   width: 280px;
   height: 400px;
-  background-color: white;
-  border: 1px solid grey;
+  background-color: #FFF;
+  border: 1px solid $main-grey;
   border-radius: 10px;
   box-shadow: 2px 2px 8px black;
   padding: 20px;

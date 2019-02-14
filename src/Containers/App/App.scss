@@ -8,14 +8,14 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#8895a7, #5f6b7a);
+  background: linear-gradient($main-grey, #5f6b7a);
   background-repeat: no-repeat;
 }
 
 header {
-  background: linear-gradient(#939faf, #8895a7);
+  background: linear-gradient(#939faf, $main-grey);
   position: fixed;
-  border: 10px solid white;
+  border: 10px solid #FFF;
   border-radius: 0 0 30px 30px;
   border-top: none;
   height: 200px;
@@ -30,24 +30,24 @@ i {
 }
 
 h1 {
-  font-family: "Open Sans", sans-serif;
+  font-family: $main-font;
   margin: 0;
   font-size: 50px;
   position: relative;
-  color: white;
+  color: #FFF;
   left: 85%;
   top: 160px;
   width: 130px;
   height: 40px;
   text-align: center;
-  background-color: #8895a7;
+  background-color: $main-grey;
   text-decoration: none;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
 }
 
 .new-note-icon {
   text-align: center;
-  color: #a8eeeb;
+  color: $big-plus-icon-color;
   font-size: 60px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 
