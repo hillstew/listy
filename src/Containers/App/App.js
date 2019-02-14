@@ -4,10 +4,13 @@ import NotesSection from "../NotesSection/NotesSection"
 import NoteForm from "../NoteForm/NoteForm"
 import NotFound from "../../Components/NotFound/NotFound"
 import { connect } from "react-redux"
-import { setNotes, setLoading, setError } from "../../actions"
-import API from '../../utils/api';
+import { fetchNotes } from '../../thunks/fetchNotes'
 
 class App extends Component {
+
+  componentDidMount() {
+   this.props.fetchNotes()
+  }
   
   getNotes = async () => {
     const { setNotes, setLoading } = this.props
@@ -18,10 +21,6 @@ class App extends Component {
     } catch (error) {
       setError(error)
     }
-  }
-
-  componentDidMount() {
-    this.getNotes();
   }
 
   render() {
@@ -77,9 +76,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setNotes: (notes) => dispatch(setNotes(notes)),
-  setLoading: (loading) => dispatch(setLoading(loading)),
-  setError: (error) => dispatch(setError(error))
+ fetchNotes: () => dispatch(fetchNotes())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
