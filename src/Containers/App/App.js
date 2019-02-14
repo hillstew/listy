@@ -12,16 +12,16 @@ class App extends Component {
    this.props.fetchNotes()
   }
   
-  getNotes = async () => {
-    const { setNotes, setLoading } = this.props
-    try {
-      const notes = await API.fetchData('notes', 'GET');
-      setNotes(notes)
-      setLoading(false)
-    } catch (error) {
-      setError(error)
-    }
-  }
+  // getNotes = async () => {
+  //   const { setNotes, setLoading } = this.props
+  //   try {
+  //     const notes = await API.fetchData('notes', 'GET');
+  //     setNotes(notes)
+  //     setLoading(false)
+  //   } catch (error) {
+  //     setError(error)
+  //   }
+  // }
 
   render() {
     const { notes, loading } = this.props
@@ -45,9 +45,7 @@ class App extends Component {
             {/* <Route component={NotFound} /> */}
           </Switch>
           <Route path="/new-note" render={() => 
-            <NoteForm 
-              getNotes={this.getNotes}
-            />}
+            <NoteForm fetchNotes={this.props.fetchNotes} />}
           />
           <Route
             path="/notes/:id"
@@ -55,7 +53,7 @@ class App extends Component {
               const { id } = match.params
               const note = notes.find((note) => note.id === parseInt(id))
               if (note) {
-                return <NoteForm {...note} getNotes={this.getNotes}/>
+                return <NoteForm {...note} fetchNotes={this.props.fetchNotes}/>
               } else {
                 return <NotFound />
               }

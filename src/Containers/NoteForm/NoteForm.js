@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setError } from '../../actions';
 import API from '../../utils/api';
+import shortid from 'shortid';
 
 class NoteForm extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class NoteForm extends Component {
 
   closePopUp = () => {
     this.setState({ showPopUp: false });
-    this.props.getNotes();
+    this.props.fetchNotes();
   }
 
   handleBodyChange = (e) => {
@@ -82,7 +83,7 @@ class NoteForm extends Component {
   addIssue = (e) => {
     e.preventDefault();
     const issues = this.createIssuesCopy();
-    issues.push({ id: Date.now(), body: '', completed: false });
+    issues.push({ id: shortid.generate(), body: '', completed: false });
     this.setIssuesInState(issues);
   }
 
