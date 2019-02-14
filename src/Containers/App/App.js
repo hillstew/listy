@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { NavLink, Route, Switch, withRouter } from "react-router-dom"
 import NotesSection from "../NotesSection/NotesSection"
-import EditNoteForm from "../EditNoteForm/EditNoteForm"
 import NoteForm from "../NoteForm/NoteForm"
 import NotFound from "../../Components/NotFound/NotFound"
 import { connect } from "react-redux"
@@ -48,7 +47,7 @@ class App extends Component {
               const { id } = match.params
               const note = notes.find((note) => note.id === parseInt(id))
               if (note) {
-                return <NoteForm note={note}/>
+                return <NoteForm {...note}/>
               } else {
                 return <NotFound />
               }
