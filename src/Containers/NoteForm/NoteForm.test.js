@@ -5,6 +5,10 @@ import { putNote } from '../../thunks/putNote';
 import { postNote } from '../../thunks/postNote';
 import { deleteNote } from '../../thunks/deleteNote';
 
+jest.mock('../../thunks/putNote')
+jest.mock('../../thunks/postNote')
+jest.mock('../../thunks/deleteNote')
+
 describe('NoteForm', () => {
     describe('NoteForm component', () => {
         let wrapper;
