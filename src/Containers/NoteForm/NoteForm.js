@@ -5,6 +5,7 @@ import shortid from 'shortid';
 import { postNote } from '../../thunks/postNote';
 import { putNote } from '../../thunks/putNote';
 import { deleteNote } from '../../thunks/deleteNote';
+import Issue from '../../Components/Issue/Issue';
 
 class NoteForm extends Component {
   constructor(props) {
@@ -79,13 +80,12 @@ class NoteForm extends Component {
   showIssues = (completed) => {
     const { issues } = this.state;
     return issues.filter(issue => issue.completed === completed).map(issue =>
-      <li key={issue.id} id={issue.id}>
-        <span>
-          <i onClick={this.toggleIssueCompletion} className="fas fa-square"></i>
-          <input onChange={this.handleBodyChange} value={issue.body}></input>
-        </span>
-        <button onClick={this.removeIssue}>Delete</button>
-      </li>
+      <Issue 
+        issue={issue} 
+        toggleIssueCompletion={this.toggleIssueCompletion}
+        handleBodyChange={this.handleBodyChange}
+        removeIssue={this.removeIssue}
+      />
     )
   }
 
