@@ -11,6 +11,7 @@ export class NoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showPopup: true,
       id: this.props.id || '',
       title: this.props.title || '',
       issues: this.props.issues || [],
@@ -50,16 +51,19 @@ export class NoteForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { putNote, postNote } = this.props;
+    const { putNote, postNote, error } = this.props;
     const { id, title, issues } = this.state;
     id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
+    error === '' && this.setState({showPopup: false});
   }
 
   removeNote = (e) => {
     e.preventDefault();
+    const { error } = this.props;
     if (this.props.id !== '') {
       this.props.deleteNote(this.state.id);
     }
+    error === '' && this.setState({ showPopup: false });
   }
 
   addIssue = (e) => {
@@ -84,7 +88,7 @@ export class NoteForm extends Component {
         issue={issue} 
         toggleIssueCompletion={this.toggleIssueCompletion}
         handleBodyChange={this.handleBodyChange}
-        removeIssue={this.removeIssue}
+        removeIssue={this.removeIssue} 
       />
     )
   }
@@ -94,7 +98,7 @@ export class NoteForm extends Component {
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
-    if (!this.props.popup) {
+    if (!this.state.showPopup) {
       return <Redirect to={'/'} />
     } else {
       return (
@@ -115,7 +119,7 @@ export class NoteForm extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  popup: state.popup
+  error: state.error,
 });
 
 export const mapDispatchToProps = (dispatch) => ({

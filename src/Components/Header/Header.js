@@ -8,7 +8,6 @@ export const Header = ({ togglePopup }) => {
         <h1>Listy</h1>
       </NavLink>
       <NavLink
-        onClick={() => togglePopup(true)}
         id="add-note-link"
         to="/new-note">
         <i className="fas fa-plus-circle new-note-icon" />

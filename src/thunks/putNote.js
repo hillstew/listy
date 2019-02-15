@@ -1,4 +1,4 @@
-import { setLoading, setError, updateNote, togglePopup } from '../actions';
+import { setLoading, setError, updateNote } from '../actions';
 import API from '../utils/api';
 
 export const putNote = (note) => {
@@ -9,7 +9,6 @@ export const putNote = (note) => {
       await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
       dispatch(setLoading(false));
       dispatch(updateNote(note));
-      dispatch(togglePopup(false));
     } catch (error) {
       dispatch(setError(error));
     }
