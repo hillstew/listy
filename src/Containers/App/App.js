@@ -30,7 +30,7 @@ class App extends Component {
             path="/notes/:id"
             render={({ match }) => {
               const { id } = match.params
-              const note = notes.find((note) => note.id === parseInt(id))
+              const note = notes.find((note) => note.id === id)
               if (note) {
                 return <NoteForm {...note} />
               } else {

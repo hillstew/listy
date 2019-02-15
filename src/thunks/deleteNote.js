@@ -5,8 +5,8 @@ export const deleteNote = (id) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      const result = await API.fetchData(`notes/${id}`, 'DELETE');
-      dispatch(removeNote(result));
+      await API.fetchData(`notes/${id}`, 'DELETE');
+      dispatch(removeNote(id));
     } catch (error) {
       dispatch(setError(error));
     }

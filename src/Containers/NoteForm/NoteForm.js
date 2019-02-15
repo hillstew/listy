@@ -64,11 +64,11 @@ export class NoteForm extends Component {
 
   removeNote = (e) => {
     e.preventDefault();
-    const { error } = this.props;
-    if (this.props.id !== '') {
-      this.props.deleteNote(this.state.id);
+    const { error, deleteNote } = this.props;
+    if (this.state.id !== '') {
+      deleteNote(this.state.id);
     }
-    error === '' && this.setState({ showPopup: false });
+    error === '' ? this.setState({ showPopup: false }) : this.setState({ displayError: 'Note could not be deleted. Please try again.' });
   }
 
   addIssue = (e) => {
