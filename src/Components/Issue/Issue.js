@@ -6,7 +6,7 @@ const Issue = (props) => {
         <li key={id} id={id}>
             <span>
                 <i onClick={props.toggleIssueCompletion} className="fas fa-square"></i>
-                <input onChange={props.handleBodyChange} value={body}></input>
+                <input onChange={props.handleBodyChange} placeholder='Add a list item...' value={body}></input>
             </span>
             <button onClick={props.removeIssue}>Delete</button>
         </li>
