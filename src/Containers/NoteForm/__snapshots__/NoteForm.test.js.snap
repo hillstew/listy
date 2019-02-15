@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
+<Redirect
+  push={false}
+  to="/"
+/>
+`;
