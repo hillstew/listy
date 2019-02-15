@@ -9,7 +9,6 @@ export const postNote = (note) => {
       const result = await API.fetchData('notes', 'POST', { title, issues });
       dispatch(setLoading(false));
       dispatch(addNote(result));
-      dispatch(togglePopup(false));
     } catch (error) {
       dispatch(setError(error));
     }

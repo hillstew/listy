@@ -1,4 +1,4 @@
-import { setLoading, setError, removeNote, togglePopup } from '../actions';
+import { setLoading, setError, removeNote } from '../actions';
 import API from '../utils/api';
 
 export const deleteNote = (id) => {
@@ -8,7 +8,6 @@ export const deleteNote = (id) => {
       const result = await API.fetchData(`notes/${id}`, 'DELETE');
       dispatch(setLoading(false));
       dispatch(removeNote(result));
-      dispatch(togglePopup(false));
     } catch (error) {
       dispatch(setError(error));
     }
