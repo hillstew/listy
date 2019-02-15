@@ -59,6 +59,7 @@ export class NoteForm extends Component {
     } else {
       id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
       error === '' ? this.setState({ showPopup: false }) : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
+      console.log(this.state.showPopup)
     }
   }
 
@@ -90,6 +91,7 @@ export class NoteForm extends Component {
     const { issues } = this.state;
     return issues.filter(issue => issue.completed === completed).map(issue =>
       <Issue 
+        key={issue.id}
         issue={issue} 
         toggleIssueCompletion={this.toggleIssueCompletion}
         handleBodyChange={this.handleBodyChange}

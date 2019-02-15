@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import NotesSection from '../NotesSection/NotesSection'
 import NoteForm from '../NoteForm/NoteForm'
-import NotFound from '../../Components/NotFound/NotFound'
+import AlternateScreen from '../../Components/AlternateScreen/AlternateScreen'
 import { connect } from 'react-redux'
 import { fetchNotes } from '../../thunks/fetchNotes'
 import { Header } from '../../Components/Header/Header'
@@ -17,13 +17,14 @@ class App extends Component {
     return (
       <div>
         <Fragment>
-          {loading && <h1>Loading notes...</h1>}
           <Header/>
+          {loading && <AlternateScreen text='Loading notes...' />}
           <Switch>
             <Route exact path="/" component={NotesSection} />
             <Route exact path="/new-note" component={NotesSection} />
             <Route exact path="/notes/:id" component={NotesSection} />
-            <Route path='*' component={NotFound} />
+            <Route exact path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
+            <Route path='*' render={() => <Redirect to={'/not-found'}/>} />
           </Switch>
           <Route path="/new-note" component={NoteForm} />
           <Route
@@ -34,7 +35,7 @@ class App extends Component {
               if (note) {
                 return <NoteForm {...note} />
               } else {
-                return <NotFound />
+                return <Redirect to={'/not-found'} />
               }
             }}
           />
