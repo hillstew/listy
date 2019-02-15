@@ -6,10 +6,10 @@ export const deleteNote = (id) => {
     try {
       dispatch(setLoading(true));
       const result = await API.fetchData(`notes/${id}`, 'DELETE');
-      dispatch(setLoading(false));
       dispatch(removeNote(result));
     } catch (error) {
       dispatch(setError(error));
     }
+    dispatch(setLoading(false));
   }
 }

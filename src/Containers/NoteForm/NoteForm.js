@@ -15,6 +15,7 @@ export class NoteForm extends Component {
       id: this.props.id || '',
       title: this.props.title || '',
       issues: this.props.issues || [],
+      displayError: '',
     }
   }
 
@@ -53,8 +54,12 @@ export class NoteForm extends Component {
     e.preventDefault();
     const { putNote, postNote, error } = this.props;
     const { id, title, issues } = this.state;
-    id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
-    error === '' && this.setState({showPopup: false});
+    if (title === '' || !issues.length) {
+      this.setState({ displayError: 'Please add a title and at least one list item'});
+    } else {
+      id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
+      error === '' ? this.setState({ showPopup: false }) : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
+    }
   }
 
   removeNote = (e) => {
@@ -94,7 +99,7 @@ export class NoteForm extends Component {
   }
 
   render() {
-    const { title } = this.state;
+    const { title, displayError } = this.state;
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
@@ -104,11 +109,12 @@ export class NoteForm extends Component {
       return (
         <div className='overlay-div'>
           <form className='note-pop-up' onSubmit={this.handleSubmit}>
-            <input onChange={this.handleTitleChange} value={title}></input>
+            <input onChange={this.handleTitleChange} placeholder='Add a title...' value={title}></input>
             <ul>{incompleteIssues}</ul>
             <button onClick={this.addIssue}><i className="fas fa-plus-circle form-add-icon"></i></button>
             <h4>Completed</h4>
             <ul>{completeIssues}</ul>
+            <p>{displayError}</p>
             <input className='submit-button' type="submit" value='Save'></input>
             <button onClick={this.removeNote}>Delete</button>
           </form>

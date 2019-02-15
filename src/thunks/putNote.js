@@ -7,10 +7,10 @@ export const putNote = (note) => {
     try {
       dispatch(setLoading(true));
       await API.fetchData(`notes/${id}`, 'PUT', { title, issues });
-      dispatch(setLoading(false));
       dispatch(updateNote(note));
     } catch (error) {
       dispatch(setError(error));
     }
+    dispatch(setLoading(false));
   }
 }
