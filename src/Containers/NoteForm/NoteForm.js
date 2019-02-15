@@ -30,7 +30,7 @@ export class NoteForm extends Component {
   handleTitleChange = (e) => {
     e.preventDefault();
     this.setState({ title: e.target.value });
-  } 
+  }
 
   setIssuesInState = (issues) => {
     this.setState({ issues });
@@ -41,14 +41,14 @@ export class NoteForm extends Component {
     const issues = this.createIssuesCopy();
     issues[index].body = e.target.value;
     this.setIssuesInState(issues);
-  } 
+  }
 
   toggleIssueCompletion = (e) => {
     const index = this.getIndex(e.target.parentElement.parentElement.id);
     const issues = this.createIssuesCopy();
     issues[index].completed = !issues[index].completed;
     this.setIssuesInState(issues);
-  } 
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -111,14 +111,23 @@ export class NoteForm extends Component {
       return (
         <div className='overlay-div'>
           <form className='note-pop-up' onSubmit={this.handleSubmit}>
-            <input onChange={this.handleTitleChange} placeholder='Add a title...' value={title}></input>
+            <input
+              className='title-input'
+              onChange={this.handleTitleChange}
+              placeholder='Title'
+              value={title}
+            />
             <ul>{incompleteIssues}</ul>
-            <button onClick={this.addIssue}><i className="fas fa-plus-circle form-add-icon"></i></button>
+            <button onClick={this.addIssue} className="add-issue-button">
+              <i className="fas fa-plus-circle form-add-icon" />
+            </button>
             <h4>Completed</h4>
             <ul>{completeIssues}</ul>
             <p>{displayError}</p>
-            <input className='submit-button' type="submit" value='Save'></input>
-            <button onClick={this.removeNote}>Delete</button>
+            <span>
+              <button className='submit-button'>SAVE</button>
+              <button className='delete-button' onClick={this.removeNote} />
+            </span>
           </form>
         </div>
       )
