@@ -59,16 +59,17 @@ export class NoteForm extends Component {
     } else {
       id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
       error === '' ? this.setState({ showPopup: false }) : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
+      console.log(this.state.showPopup)
     }
   }
 
   removeNote = (e) => {
     e.preventDefault();
-    const { error } = this.props;
-    if (this.props.id !== '') {
-      this.props.deleteNote(this.state.id);
+    const { error, deleteNote } = this.props;
+    if (this.state.id !== '') {
+      deleteNote(this.state.id);
     }
-    error === '' && this.setState({ showPopup: false });
+    error === '' ? this.setState({ showPopup: false }) : this.setState({ displayError: 'Note could not be deleted. Please try again.' });
   }
 
   addIssue = (e) => {
@@ -90,6 +91,7 @@ export class NoteForm extends Component {
     const { issues } = this.state;
     return issues.filter(issue => issue.completed === completed).map(issue =>
       <Issue 
+        key={issue.id}
         issue={issue} 
         toggleIssueCompletion={this.toggleIssueCompletion}
         handleBodyChange={this.handleBodyChange}
