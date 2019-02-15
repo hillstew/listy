@@ -21,7 +21,9 @@ class App extends Component {
           <Header togglePopup={togglePopup}/>
           <Switch>
             <Route exact path="/" component={NotesSection} />
-            {/* <Route component={NotFound} /> */}
+            <Route exact path="/new-note" component={NotesSection} />
+            <Route exact path="/notes/:id" component={NotesSection} />
+            <Route path='*' component={NotFound} />
           </Switch>
           <Route path="/new-note" component={NoteForm} />
           <Route
