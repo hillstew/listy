@@ -14,7 +14,6 @@ class App extends Component {
 
   render() {
     const { notes, loading } = this.props
-    console.log(notes)
     return (
       <div>
         <Fragment>
