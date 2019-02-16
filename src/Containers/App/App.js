@@ -8,12 +8,13 @@ import { fetchNotes } from '../../thunks/fetchNotes'
 import { Header } from '../../Components/Header/Header'
 
 class App extends Component {
+
   componentDidMount() {
     this.props.fetchNotes()
   }
 
   render() {
-    const { notes, loading } = this.props
+    const { notes, loading, history } = this.props
     return (
       <div>
         <Fragment>
@@ -25,17 +26,17 @@ class App extends Component {
                 <Route exact path="/" component={NotesSection} />
                 <Route exact path="/new-note" component={NotesSection} />
                 <Route exact path="/notes/:id" component={NotesSection} />
-                <Route exact path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
-                <Route path='*' render={() => <Redirect to={'/not-found'}/>} />
+                <Route path='*' render={() => <AlternateScreen text='404 Page Not Found' />} />
+                <Route path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
               </Switch>
-              <Route path="/new-note" component={NoteForm} />
+              <Route path="/new-note" render={() => <NoteForm history={history} />} />
               <Route
                 path="/notes/:id"
                 render={({ match }) => {
                   const { id } = match.params
                   const note = notes.find((note) => note.id === id)
                   if (note) {
-                    return <NoteForm {...note} />
+                    return <NoteForm history={history} {...note} />
                   } else {
                     return <Redirect to={'/not-found'} />
                   }
