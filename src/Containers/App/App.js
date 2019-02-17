@@ -6,6 +6,7 @@ import AlternateScreen from '../../Components/AlternateScreen/AlternateScreen'
 import { connect } from 'react-redux'
 import { fetchNotes } from '../../thunks/fetchNotes'
 import { Header } from '../../Components/Header/Header'
+import PropTypes from "prop-types"
 
 class App extends Component {
   componentDidMount() {
@@ -51,7 +52,13 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
- fetchNotes: () => dispatch(fetchNotes()),
+  fetchNotes: () => dispatch(fetchNotes()),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+
+App.propTypes = {
+  fetchNotes: PropTypes.func.isRequired,
+  notes: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+}
