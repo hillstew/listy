@@ -301,8 +301,12 @@ describe('NoteForm', () => {
     let mockNote;
     let mockError;
     let mockEvent;
+    let putNoteMock;
+    let postNoteMock;
 
     beforeEach(() => {
+      putNoteMock = jest.fn();
+      postNoteMock = jest.fn();
       mockEvent = {preventDefault: () => {}};
       mockError = '';
       mockNote = {
@@ -336,17 +340,17 @@ describe('NoteForm', () => {
           { id: '2', body: 'more issue text', completed: true },
         ]
       };
-      postNote = jest.fn();
       wrapper = shallow(
         <NoteForm
           id={''}
           title={mockNote.title}
           issues={mockNote.issues}
           displayError={mockError}
+          postNote={postNoteMock}
         />
       )
       wrapper.instance().handleSubmit(mockEvent);
-      await expect(postNote).toHaveBeenCalledWith(expected);
+      await expect(wrapper.instance().props.postNote).toHaveBeenCalledWith(expected);
     });
 
     it('should call putNote with the correct params', async () => {
@@ -358,50 +362,112 @@ describe('NoteForm', () => {
           { id: '2', body: 'more issue text', completed: true },
         ]
       };
-      postNote = jest.fn();
       wrapper = shallow(
         <NoteForm
           id={mockNote.id}
           title={mockNote.title}
           issues={mockNote.issues}
           displayError={mockError}
+          putNote={putNoteMock}
         />
       )
       wrapper.instance().handleSubmit(mockEvent);
-      await expect(putNote).toHaveBeenCalledWith(expected);
+      await expect(wrapper.instance().props.putNote).toHaveBeenCalledWith(expected);
     });
 
-    it('should call history.goBack() if everything is okay', () => {
+    it('should call history.goBack() if everything is okay', async () => {
       const mockHistory = { goBack: jest.fn()};
       wrapper = shallow(
         <NoteForm
           id={mockNote.id}
           title={mockNote.title}
           issues={mockNote.issues}
+          error={''}
           displayError={mockError}
           history={mockHistory}
+          putNote={putNoteMock}
         />
       )
-      wrapper.instance().handleSubmit(mockEvent);
+      await wrapper.instance().handleSubmit(mockEvent);
       expect(wrapper.instance().props.history.goBack).toHaveBeenCalled();
     });
 
-    it('should set state with an error is something is not okay', () => {
-      
+    it('should set state with an error is something is not okay', async () => {
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          error={'error occurred'}
+          displayError={mockError}
+          putNote={putNoteMock}
+        />
+      )
+      await wrapper.instance().handleSubmit(mockEvent);
+      expect(wrapper.state('displayError')).toEqual('Note could not be created/updated. Please try again.');
     });
   });
 
   describe('removeNote', () => {
+    let wrapper;
+    let mockNote;
+    let mockError;
+    let mockEvent;
+    let deleteNoteMock;
+
+    beforeEach(() => {
+      deleteNoteMock = jest.fn();
+      mockEvent = { preventDefault: () => { } };
+      mockError = '';
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+    });
+
     it('should call deleteNote with the correct params', () => {
-
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          deleteNote={deleteNoteMock}
+        />
+      )
+      wrapper.instance().removeNote(mockEvent);
+      expect(wrapper.instance().props.deleteNote).toHaveBeenCalledWith('1');
     });
 
-    it('should call history.goBack() if everything is okay', () => {
-      
+    it('should call history.goBack() if everything is okay', async () => {
+      const mockHistory = { goBack: jest.fn() };
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          error={''}
+          displayError={mockError}
+          history={mockHistory}
+          deleteNote={deleteNoteMock}
+        />
+      )
+      await wrapper.instance().removeNote(mockEvent);
+      expect(wrapper.instance().props.history.goBack).toHaveBeenCalled();
     });
 
-    it('should set state with an error is something is not okay', () => {
-
+    it('should set state with an error is something is not okay', async () => {
+      const mockHistory = { goBack: jest.fn() };
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          error={'error occurred'}
+          displayError={mockError}
+          history={mockHistory}
+          deleteNote={deleteNoteMock}
+        />
+      )
+      await wrapper.instance().removeNote(mockEvent);
+      expect(wrapper.state('displayError')).toEqual('Note could not be deleted. Please try again.');
     });
   });
 
