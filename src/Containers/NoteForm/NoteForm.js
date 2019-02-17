@@ -6,6 +6,7 @@ import { deleteNote } from '../../thunks/deleteNote';
 import { postNote } from '../../thunks/postNote';
 import { putNote } from '../../thunks/putNote';
 import Issue from '../../Components/Issue/Issue';
+import PropTypes from "prop-types"
 
 export class NoteForm extends Component {
   constructor(props) {
@@ -140,3 +141,10 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
+
+NoteForm.propTypes = {
+  putNote: PropTypes.func.isRequired,
+  postNote: PropTypes.func.isRequired,
+  deleteNote: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired
+}
