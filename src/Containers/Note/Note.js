@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateNote } from '../../actions';
+import PropTypes from "prop-types"
 
 export const Note = ({note, updateNote}) => {
   return (
@@ -25,3 +26,8 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(Note);
+
+Note.propTypes = {
+  note: PropTypes.object.isRequired,
+  updateNote: PropTypes.func.isRequired,
+}
