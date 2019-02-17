@@ -12,7 +12,7 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
       className="title-input"
       onChange={[Function]}
       placeholder="Title"
-      value=""
+      value="Title"
     />
     <ul />
     <button
