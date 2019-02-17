@@ -2,6 +2,7 @@
 
 exports[`Issue should match the correct snapshot 1`] = `
 <li
+  className="issue-li"
   id={1}
   key="1"
 >
@@ -12,13 +13,13 @@ exports[`Issue should match the correct snapshot 1`] = `
     />
     <input
       onChange={[MockFunction]}
+      placeholder="Add a list item..."
       value=""
     />
   </span>
   <button
+    className="delete-button"
     onClick={[MockFunction]}
-  >
-    Delete
-  </button>
+  />
 </li>
 `;

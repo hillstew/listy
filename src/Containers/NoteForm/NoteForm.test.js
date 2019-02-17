@@ -29,12 +29,12 @@ describe('NoteForm', () => {
     describe('mapStateToProps', () => {
         it('should return a string with a boolean', () => {
             const mockState = {
-                popup: true,
-                notes: []
+                notes: [],
+                error: ''
             }
             
             const expected = {
-                popup: true,
+                error: ''
             }
 
             const mappedProps = mapStateToProps(mockState);

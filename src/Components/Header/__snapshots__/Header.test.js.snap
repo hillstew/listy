@@ -16,7 +16,6 @@ exports[`Header should match the snapshot 1`] = `
     activeClassName="active"
     aria-current="page"
     id="add-note-link"
-    onClick={[Function]}
     to="/new-note"
   >
     <i

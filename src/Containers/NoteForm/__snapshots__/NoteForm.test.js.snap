@@ -1,8 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
-<Redirect
-  push={false}
-  to="/"
-/>
+<div
+  className="overlay-div"
+>
+  <form
+    className="note-pop-up"
+    onSubmit={[Function]}
+  >
+    <input
+      className="title-input"
+      onChange={[Function]}
+      placeholder="Title"
+      value=""
+    />
+    <ul />
+    <button
+      className="add-issue-button"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-plus-circle form-add-icon"
+      />
+    </button>
+    <h4>
+      Completed
+    </h4>
+    <ul />
+    <p />
+    <span>
+      <button
+        className="submit-button"
+      >
+        SAVE
+      </button>
+      <button
+        className="delete-button"
+        onClick={[Function]}
+      />
+    </span>
+  </form>
+</div>
 `;
