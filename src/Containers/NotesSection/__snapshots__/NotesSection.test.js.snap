@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotesSection NotesSection component should match the correct snapshot 1`] = `
+<div
+  id="notes-wrapper"
+>
+  <Connect(Note)
+    key="1"
+    note={
+      Object {
+        "id": "1",
+        "issues": Array [],
+        "title": "title1",
+      }
+    }
+  />
+  <Connect(Note)
+    key="1"
+    note={
+      Object {
+        "id": "1",
+        "issues": Array [],
+        "title": "title2",
+      }
+    }
+  />
+</div>
+`;
