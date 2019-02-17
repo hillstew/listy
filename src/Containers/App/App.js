@@ -14,32 +14,36 @@ export class App extends Component {
   }
 
   render() {
-    const { notes, loading } = this.props
+    const { notes, loading, history } = this.props
     return (
       <div>
         <Fragment>
           <Header/>
           {loading && <AlternateScreen text='Loading notes...' />}
-          <Switch>
-            <Route exact path="/" component={NotesSection} />
-            <Route exact path="/new-note" component={NotesSection} />
-            <Route exact path="/notes/:id" component={NotesSection} />
-            <Route exact path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
-            <Route path='*' render={() => <Redirect to={'/not-found'}/>} />
-          </Switch>
-          <Route path="/new-note" component={NoteForm} />
-          <Route
-            path="/notes/:id"
-            render={({ match }) => {
-              const { id } = match.params
-              const note = notes.find((note) => note.id === id)
-              if (note) {
-                return <NoteForm {...note} />
-              } else {
-                return <Redirect to={'/not-found'} />
-              }
-            }}
-          />
+          {!loading && 
+            <div>
+              <Switch>
+                <Route exact path="/" component={NotesSection} />
+                <Route exact path="/new-note" component={NotesSection} />
+                <Route exact path="/notes/:id" component={NotesSection} />
+                <Route path='*' render={() => <AlternateScreen text='404 Page Not Found' />} />
+                <Route path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
+              </Switch>
+              <Route path="/new-note" render={() => <NoteForm history={history} />} />
+              <Route
+                path="/notes/:id"
+                render={({ match }) => {
+                  const { id } = match.params
+                  const note = notes.find((note) => note.id === id)
+                  if (note) {
+                    return <NoteForm history={history} {...note} />
+                  } else {
+                    return <Redirect to={'/not-found'} />
+                  }
+                }}
+              />
+            </div>
+          }
         </Fragment>
       </div>
     )
