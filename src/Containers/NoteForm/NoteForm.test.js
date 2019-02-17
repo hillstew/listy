@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { putNote } from '../../thunks/putNote';
 import { postNote } from '../../thunks/postNote';
 import { deleteNote } from '../../thunks/deleteNote';
+import shortid from 'shortid';
 
 jest.mock('../../thunks/putNote')
 jest.mock('../../thunks/postNote')
@@ -76,52 +77,317 @@ describe('NoteForm', () => {
   });
 
   describe('handleBodyChange', () => {
-    it('should call getIndex with the correct params', () => {
+      let wrapper;
+      let mockNote;
+      let mockError;
+      let mockEvent;
 
+      beforeEach(() => {
+        mockEvent = { target: { 
+          parentElement: { parentElement: { id: '1' } },
+          value: 'new body'
+        }};
+        mockError = '';
+        mockNote = {
+          id: '1',
+          title: 'Title',
+          issues: [
+            { id: '1', body: 'issue text' },
+            { id: '2', body: 'more issue text' },
+          ],
+        }
+        wrapper = shallow(
+          <NoteForm
+            id={mockNote.id}
+            title={mockNote.title}
+            issues={mockNote.issues}
+            displayError={mockError}
+          />
+        )
+
+        wrapper.instance().getIndex = jest.fn().mockImplementation( () => {
+          return '1'
+        });
+        wrapper.instance().createIssuesCopy = jest.fn().mockImplementation( () => {
+          return mockNote.issues
+        });
+        wrapper.instance().setIssuesInState = jest.fn();
+      });
+
+    it('should call getIndex with the correct params', () => {
+      const expected = '1';
+      wrapper.instance().handleBodyChange(mockEvent);
+      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
     });
 
     it('should call createIssuesCopy', () => {
-
+      wrapper.instance().handleBodyChange(mockEvent);
+      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
-
+      const expected = [
+        { id: '1', body: 'issue text' },
+        { id: '2', body: 'new body' },
+      ];
+      wrapper.instance().handleBodyChange(mockEvent);
+      expect(wrapper.instance().setIssuesInState).toHaveBeenCalledWith(expected);
     });
   });
 
   describe('toggleIssueCompletion', () => {
-    it('should call getIndex with the correct params', () => {
+    let wrapper;
+    let mockNote;
+    let mockError;
+    let mockEvent;
 
+    beforeEach(() => {
+      mockEvent = { target: { parentElement: { parentElement: { id: '1' } } } };
+      mockError = '';
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+        />
+      )
+
+      wrapper.instance().getIndex = jest.fn().mockImplementation(() => {
+        return '1'
+      });
+      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
+        return mockNote.issues
+      });
+      wrapper.instance().setIssuesInState = jest.fn();
+    });
+
+    it('should call getIndex with the correct params', () => {
+      const expected = '1';
+      wrapper.instance().toggleIssueCompletion(mockEvent);
+      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
     });
 
     it('should call createIssuesCopy', () => {
-
+      wrapper.instance().toggleIssueCompletion(mockEvent);
+      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
+      const expected = [
+        { id: '1', body: 'issue text', completed: false },
+        { id: '2', body: 'more issue text', completed: false },
+      ];
+      wrapper.instance().toggleIssueCompletion(mockEvent);
+      expect(wrapper.instance().setIssuesInState).toHaveBeenCalledWith(expected);
+    });
+  });
 
+  describe('addIssue', () => {
+    let wrapper;
+    let mockNote;
+    let mockError;
+    let mockEvent;
+
+    beforeEach(() => {
+      mockEvent = { preventDefault: () => {} };
+      mockError = '';
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+        />
+      )
+
+      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
+        return mockNote.issues
+      });
+      wrapper.instance().setIssuesInState = jest.fn();
+    });
+
+    it('should call createIssuesCopy', () => {
+      wrapper.instance().addIssue(mockEvent);
+      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+    });
+
+    it('should call setIssuesInState with the correct params', () => {
+      shortid.generate = jest.fn().mockImplementation(() => '3');
+      const expected = [
+        { id: '1', body: 'issue text', completed: false },
+        { id: '2', body: 'more issue text', completed: true },
+        { id: '3', body: '', completed: false },
+      ]
+      wrapper.instance().addIssue(mockEvent);
+      expect(wrapper.instance().setIssuesInState).toHaveBeenCalledWith(expected);
+    });
+  });
+
+  describe('removeIssue', () => {
+    let wrapper;
+    let mockNote;
+    let mockError;
+    let mockEvent;
+
+    beforeEach(() => {
+      mockEvent = { 
+        preventDefault: () => {},
+        target: { parentElement: { id: '1' } } 
+      };
+      mockError = '';
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+        />
+      )
+
+      wrapper.instance().getIndex = jest.fn().mockImplementation(() => '1')
+      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
+        return mockNote.issues
+      });
+      wrapper.instance().setIssuesInState = jest.fn();
+    });
+
+    it('should call getIndex with the correct params', () => {
+      const expected = '1';
+      wrapper.instance().removeIssue(mockEvent);
+      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
+    });
+
+    it('should call createIssuesCopy', () => {
+      wrapper.instance().removeIssue(mockEvent);
+      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+    });
+
+    it('should call setIssuesInState with the correct params', () => {
+      const expected = [
+        { id: '1', body: 'issue text', completed: false }
+      ]
+      wrapper.instance().removeIssue(mockEvent);
+      expect(wrapper.instance().setIssuesInState).toHaveBeenCalledWith(expected);
     });
   });
 
   describe('handleSubmit', () => {
+    let wrapper;
+    let mockNote;
+    let mockError;
+    let mockEvent;
+
+    beforeEach(() => {
+      mockEvent = {preventDefault: () => {}};
+      mockError = '';
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+    });
+
     it('should set state with an error if the title and/or issues are empty', () => {
-
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={''}
+          issues={[]}
+          displayError={mockError}
+        />
+      )
+      wrapper.instance().handleSubmit(mockEvent);
+      expect(wrapper.state('displayError')).toEqual('Please add a title and at least one list item')
     });
 
-    it('should call postNote with the correct params', () => {
-
+    it('should call postNote with the correct params', async () => {
+      const expected = {
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ]
+      };
+      postNote = jest.fn();
+      wrapper = shallow(
+        <NoteForm
+          id={''}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+        />
+      )
+      wrapper.instance().handleSubmit(mockEvent);
+      await expect(postNote).toHaveBeenCalledWith(expected);
     });
 
-    it('should call putNote with the correct params', () => {
-
+    it('should call putNote with the correct params', async () => {
+      const expected = {
+        id: '1',
+        title: 'Title',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ]
+      };
+      postNote = jest.fn();
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+        />
+      )
+      wrapper.instance().handleSubmit(mockEvent);
+      await expect(putNote).toHaveBeenCalledWith(expected);
     });
 
     it('should call history.goBack() if everything is okay', () => {
-
+      const mockHistory = { goBack: jest.fn()};
+      wrapper = shallow(
+        <NoteForm
+          id={mockNote.id}
+          title={mockNote.title}
+          issues={mockNote.issues}
+          displayError={mockError}
+          history={mockHistory}
+        />
+      )
+      wrapper.instance().handleSubmit(mockEvent);
+      expect(wrapper.instance().props.history.goBack).toHaveBeenCalled();
     });
 
     it('should set state with an error is something is not okay', () => {
-
+      
     });
   });
 
@@ -131,40 +397,10 @@ describe('NoteForm', () => {
     });
 
     it('should call history.goBack() if everything is okay', () => {
-
+      
     });
 
     it('should set state with an error is something is not okay', () => {
-
-    });
-  });
-
-  describe('addIssue', () => {
-    it('should call createIssuesCopy', () => {
-
-    });
-
-    it('should call setIssuesInState with the correct params', () => {
-
-    });
-  });
-
-  describe('removeIssue', () => {
-    it('should call getIndex with the correct params', () => {
-
-    });
-    
-    it('should call createIssuesCopy', () => {
-
-    });
-
-    it('should call setIssuesInState with the correct params', () => {
-
-    });
-  });
-
-  describe('showIssues', () => {
-    it('should return JSX with Issue components', () => {
 
     });
   });
