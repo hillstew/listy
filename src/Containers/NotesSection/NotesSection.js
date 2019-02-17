@@ -1,19 +1,15 @@
 import React from 'react';
 import Note from '../Note/Note';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types"
 
-const NotesSection = (props) => {
 
+const NotesSection = ({ notes }) => {
   return (
     <div id='notes-wrapper'>
-    {
-      props.notes.map(note => {
-        return <Note note={note} key={note.id}/>
-      })
-    }
+    {notes.map(note => <Note note={note} key={note.id}/>)}
     </div>
   )
-
 }
 
 const mapStateToProps = (state) => ({
@@ -21,3 +17,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(NotesSection);
+
+NotesSection.propTypes = {
+  notes: PropTypes.array.isRequired,
+}
