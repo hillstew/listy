@@ -1,12 +1,14 @@
 import React from 'react'
-import NotFound from './NotFound';
+import AlternateScreen from './AlternateScreen';
 import { shallow } from 'enzyme'
 
-describe('NotFound', () => {
+describe('AlternateScreen', () => {
     let wrapper;
+    let mockText;
 
     beforeEach(() => {
-        wrapper = shallow(<NotFound />)
+        mockText = '404 page not found'
+        wrapper = shallow(<AlternateScreen text={mockText}/>)
     });
 
     it('should match the correct snapshot', () => {

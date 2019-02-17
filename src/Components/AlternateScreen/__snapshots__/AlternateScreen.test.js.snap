@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlternateScreen should match the correct snapshot 1`] = `
+<h4
+  className="screen-text"
+>
+  404 page not found
+</h4>
+`;
