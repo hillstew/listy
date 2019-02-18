@@ -48,6 +48,11 @@ i {
 
 #add-note-link {
   display: block;
-  margin: 50px auto 0 auto;
+  margin: 45px auto 0 auto;
   width: 60px;
+}
+
+#tooltip {
+  font-size: 12px;
+  font-family: $main-font;
 }
