@@ -26,8 +26,8 @@ export class App extends Component {
                 <Route exact path="/" component={NotesSection} />
                 <Route exact path="/new-note" component={NotesSection} />
                 <Route exact path="/notes/:id" component={NotesSection} />
-                <Route path='*' render={() => <AlternateScreen text='404 Page Not Found' />} />
-                <Route path='/not-found' render={() => <AlternateScreen text='404 Page Not Found' />} />
+                <Route path='*' render={() => <AlternateScreen text='404: Page Not Found' />} />
+                <Route path='/not-found' render={() => <AlternateScreen text='404: Page Not Found' />} />
               </Switch>
               <Route path="/new-note" render={() => <NoteForm history={history} />} />
               <Route

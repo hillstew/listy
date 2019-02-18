@@ -1,9 +1,27 @@
 .screen-text {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
   color: white;
+  font-family: "Open Sans", sans-serif;
   font-size: 40px;
+  font-weight: 400;
   margin: 0;
   padding-top: 240px;
   text-align: center;
+}
+
+.fa-exclamation-triangle {
+  color: #dac279;
+  font-size: 85px;
+}
+
+.container-404 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+}
+
+.text-404 {
+  color: $main-light-grey;
+  font-size: 35px;
 }
