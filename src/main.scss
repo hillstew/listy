@@ -8,3 +8,21 @@
 @import './Components/Header/Header.scss';
 @import './Containers/App/App.scss';
 @import './Components/Issue/Issue.scss';
+
+@media screen and (max-width: 655px) {
+    #title-text {
+        margin-left: -60px;
+    }
+};
+
+@media screen and (max-width: 400px) {
+    #title-text {
+        margin-left: -73px;
+    }
+};
+
+@media screen and (max-width: 320px) {
+    .note-card {
+        height: 315px;
+    }
+};
