@@ -32,8 +32,7 @@ export class Note extends Component {
   };
 
   renderIncompleteIssues = (issues) => {
-    return issues
-      .filter((issue) => !issue.completed)
+    return issues.filter((issue) => !issue.completed)
       .map((issue) => (
         <li key={issue.id} id={issue.id}>
           <span>
@@ -49,8 +48,7 @@ export class Note extends Component {
   };
 
   renderCompleteIssues = (issues) => {
-    return issues
-      .filter((issue) => issue.completed)
+    return issues.filter((issue) => issue.completed)
       .map((issue) => (
         <li key={issue.id} id={issue.id}>
           <span>
@@ -68,7 +66,6 @@ export class Note extends Component {
   render() {
     const { note, note: { issues, title }} = this.props;
     return (
-      <div>
         <div className="note-card">
           <h3>{title}</h3>
           <ul>{this.renderIncompleteIssues(issues)}</ul>
@@ -77,7 +74,6 @@ export class Note extends Component {
             <button className="edit-button-note" />
           </Link>
         </div>
-      </div>
     );
   }
 }
