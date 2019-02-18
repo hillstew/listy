@@ -14,6 +14,7 @@ const Issue = (props) => {
           onChange={handleBodyChange}
           placeholder='Add a list item...'
           value={body}
+          maxlength='45'
         />
       </span>
       <button onClick={removeIssue} className="list-delete-button"/>

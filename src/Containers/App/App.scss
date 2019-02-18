@@ -12,4 +12,11 @@ body {
   background-repeat: no-repeat;
 }
 
+button,
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
 
