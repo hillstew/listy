@@ -21,8 +21,60 @@
     }
 };
 
+@media screen and (max-width: 360px) {    
+    .note-pop-up {
+        width: 300px;
+        left: 230px;
+    }
+
+    .note-pop-up input {
+        margin: 0;
+        width: 190px;
+    }
+
+    .title-input {
+        width: 200px;
+    }
+
+    li {
+        width: 226px;
+    }
+};
+
+@media screen and (max-width: 375px) {    
+    .note-pop-up {
+        width: 300px;
+        left: 237px;
+    }
+};
+
+@media screen and (max-width: 360px) {    
+    .note-pop-up {
+        width: 300px;
+        left: 229px;
+    }
+};
+
 @media screen and (max-width: 320px) {
+    .note-pop-up {
+        width: 290px;
+        left: 215px;
+    }
+    
     .note-card {
         height: 315px;
+    }
+
+    .note-pop-up input {
+        margin: 0;
+        width: 180px;
+    }
+
+    .title-input {
+        width: 160px;
+    }
+
+    li {
+        width: 218px;
     }
 };
