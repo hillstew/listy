@@ -20,7 +20,7 @@ const fetchData = async (path, method, data = null) => {
   const response = await fetch(`http://localhost:3001/api/v1/${path}`, params);
 
   if (response.status === 204) {
-    return response
+    return
   } else if (response.ok) {
     return response.json();
   } else {
