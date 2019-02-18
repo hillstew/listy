@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateNote } from '../../actions';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
 export class Note extends Component {
   constructor(props) {
@@ -12,24 +13,16 @@ export class Note extends Component {
     };
   }
 
-  getIndex = (id) => {
-    return this.state.issues.findIndex((issue) => issue.id == id);
-  };
-
-  createIssuesCopy = () => {
-    return this.state.issues.slice();
+  toggleIssueCompletion = (e) => {
+    const index = getIndex(e.target.id, this.state.issues);
+    const issues = createIssuesCopy(this.state.issues);
+    issues[index].completed = !issues[index].completed;
+    this.setIssuesInState(issues);
   };
 
   setIssuesInState = (issues) => {
     this.setState({ issues });
-  };
-
-  toggleIssueCompletion = (e) => {
-    const index = this.getIndex(e.target.id);
-    const issues = this.createIssuesCopy();
-    issues[index].completed = !issues[index].completed;
-    this.setIssuesInState(issues);
-  };
+    };
 
   renderIncompleteIssues = (issues) => {
     return issues.filter((issue) => !issue.completed)

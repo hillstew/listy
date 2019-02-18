@@ -5,7 +5,8 @@ import { deleteNote } from '../../thunks/deleteNote';
 import { postNote } from '../../thunks/postNote';
 import { putNote } from '../../thunks/putNote';
 import Issue from '../../Components/Issue/Issue';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
+import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
 export class NoteForm extends Component {
   constructor(props) {
@@ -22,35 +23,27 @@ export class NoteForm extends Component {
     }
   }
 
-  getIndex = (id) => {
-    return this.state.issues.findIndex((issue) => issue.id == id);
-  }
-
-  createIssuesCopy = () => {
-    return this.state.issues.slice();
-  }
-
   handleTitleChange = (e) => {
     e.preventDefault();
     this.setState({ title: e.target.value });
   }
 
-  setIssuesInState = (issues) => {
-    this.setState({ issues });
-  }
-
   handleBodyChange = (e) => {
-    const index = this.getIndex(e.target.parentElement.parentElement.id);
-    const issues = this.createIssuesCopy();
+    const index = getIndex(e.target.parentElement.parentElement.id, this.state.issues);
+    const issues = createIssuesCopy(this.state.issues);
     issues[index].body = e.target.value;
     this.setIssuesInState(issues);
   }
 
   toggleIssueCompletion = (e) => {
-    const index = this.getIndex(e.target.parentElement.parentElement.id);
-    const issues = this.createIssuesCopy();
+    const index = getIndex(e.target.parentElement.parentElement.id, this.state.issues);
+    const issues = createIssuesCopy(this.state.issues);
     issues[index].completed = !issues[index].completed;
     this.setIssuesInState(issues);
+  }
+
+  setIssuesInState = (issues) => {
+    this.setState({ issues });
   }
 
   handleSubmit = async (e) => {
@@ -76,15 +69,15 @@ export class NoteForm extends Component {
 
   addIssue = (e) => {
     e.preventDefault();
-    const issues = this.createIssuesCopy();
+    const issues = createIssuesCopy(this.state.issues);
     issues.push({ id: shortid.generate(), body: '', completed: false });
     this.setIssuesInState(issues);
   }
 
   removeIssue = (e) => {
     e.preventDefault();
-    const index = this.getIndex(e.target.parentElement.id);
-    const issues = this.createIssuesCopy();
+    const index = getIndex(e.target.parentElement.id, this.state.issues);
+    const issues = createIssuesCopy(this.state.issues);
     issues.splice(index, 1);
     this.setIssuesInState(issues);
   }
