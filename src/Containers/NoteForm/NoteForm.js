@@ -116,7 +116,7 @@ export class NoteForm extends Component {
             onChange={this.handleTitleChange}
             placeholder='Title'
             value={title}
-            maxlength='30'
+            maxLength='30'
           />
           <ul className='incomplete-items'>{incompleteIssues}</ul>
           <button onClick={this.addIssue} className="add-issue-button">
