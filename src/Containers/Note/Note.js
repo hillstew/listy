@@ -35,14 +35,14 @@ export class Note extends Component {
     return issues.filter((issue) => !issue.completed)
       .map((issue) => (
         <li key={issue.id} id={issue.id}>
-          <span>
+          <div className='issue-body'>
             <i
               className="fas fa-square"
               onClick={this.toggleIssueCompletion}
               id={issue.id}
-            />{' '}
+            />
             {issue.body}
-          </span>
+          </div>
         </li>
       ));
   };
@@ -52,14 +52,14 @@ export class Note extends Component {
     return issues.filter((issue) => issue.completed)
       .map((issue) => (
         <li key={issue.id} id={issue.id}>
-          <span>
+          <div className='issue-body'>
             <i
               className="fas fa-check-square"
               onClick={this.toggleIssueCompletion}
               id={issue.id}
-            />{' '}
+            />
             {issue.body}
-          </span>
+          </div>
         </li>
       ));
   };

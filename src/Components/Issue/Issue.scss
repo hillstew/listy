@@ -16,9 +16,9 @@
   background: url(./images/delete.png);
   background-size: cover;
   border: none;
-  margin-top: 3px;
-  height: 15px;
-  width: 15px;
+  margin-top: 7px;
+  height: 14px;
+  width: 14px;
 
   &:hover {
     background: url(./images/delete-green.png);
@@ -29,10 +29,11 @@
 .incomplete-item {
   background: url(./images/square.png);
   background-size: cover;
+  margin-top: 5px;
   margin-right: 5px;
   border: none;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
 
   &:hover {
     background: url(./images/square-green.png);
@@ -43,17 +44,14 @@
 .complete-item {
   background: url(./images/checkbox.png);
   background-size: cover;
+  margin-top: 5px;
   margin-right: 5px;
   border: none;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
 
   &:hover {
     background: url(./images/checkbox-green.png);
     background-size: cover;
   }
-}
-
-.fa-square {
-  margin-right: 5px;
 }
