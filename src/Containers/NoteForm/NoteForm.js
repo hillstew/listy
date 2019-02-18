@@ -13,7 +13,11 @@ export class NoteForm extends Component {
     this.state = {
       id: this.props.id || '',
       title: this.props.title || '',
-      issues: this.props.issues || [],
+      issues: this.props.issues || [{
+        body: "",
+        completed: false,
+        id: shortid(),
+      }],
       displayError: '',
     }
   }
