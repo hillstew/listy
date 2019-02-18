@@ -77,8 +77,9 @@ export class Note extends Component {
         </div>
     );
   }
+}
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   notes: state.notes
 });
 
