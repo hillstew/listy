@@ -116,7 +116,7 @@ export class NoteForm extends Component {
           <button onClick={this.addIssue} className="add-issue-button">
             <i className="fas fa-plus-circle form-add-icon" />
           </button>
-          <h4>Completed</h4>
+          {completeIssues.length !== 0 && <h4>Completed</h4>}
           <ul>{completeIssues}</ul>
           <p>{displayError}</p>
           <span>
