@@ -10,10 +10,47 @@
   input {
     border: transparent;
   }
+}
 
-  .delete-button {
-    height: 18px;
-    width: 18px;
+.list-delete-button {
+  background: url(./images/delete.png);
+  background-size: cover;
+  border: none;
+  margin-top: 3px;
+  height: 15px;
+  width: 15px;
+
+  &:hover {
+    background: url(./images/delete-green.png);
+    background-size: cover;
+  }
+}
+
+.incomplete-item {
+  background: url(./images/square.png);
+  background-size: cover;
+  margin-right: 5px;
+  border: none;
+  height: 18px;
+  width: 18px;
+
+  &:hover {
+    background: url(./images/square-green.png);
+    background-size: cover;
+  }
+}
+
+.complete-item {
+  background: url(./images/checkbox.png);
+  background-size: cover;
+  margin-right: 5px;
+  border: none;
+  height: 18px;
+  width: 18px;
+
+  &:hover {
+    background: url(./images/checkbox-green.png);
+    background-size: cover;
   }
 }
 

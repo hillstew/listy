@@ -90,6 +90,7 @@ export class NoteForm extends Component {
     return issues.filter(issue => issue.completed === completed).map(issue =>
       <Issue 
         key={issue.id}
+        completed={completed}
         issue={issue} 
         toggleIssueCompletion={this.toggleIssueCompletion}
         handleBodyChange={this.handleBodyChange}
@@ -120,7 +121,7 @@ export class NoteForm extends Component {
           <ul>{completeIssues}</ul>
           <p>{displayError}</p>
           <span>
-            <button className='submit-button'>SAVE</button>
+            <button className='submit-button' />
             <button className='delete-button' onClick={this.removeNote} />
           </span>
         </form>

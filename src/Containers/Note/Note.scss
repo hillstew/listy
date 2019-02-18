@@ -6,6 +6,10 @@ h3 {
   font-weight: 400;
 }
 
+i:hover {
+  color: $main-green;
+}
+
 ul {
   font-family: $main-font;
   list-style-type: none;
