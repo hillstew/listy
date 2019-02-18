@@ -9,7 +9,7 @@ export const notesReducer = (state = [], action) => {
       return note.id !== action.id
     })
     case 'UPDATE_NOTE':
-      const index = state.findIndex(note => note.id === action.id);
+      const index = state.findIndex(note => note.id === action.note.id);
       const newNotes = state.slice();
       newNotes.splice(index, 1, action.note)
       return newNotes

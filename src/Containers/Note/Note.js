@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateNote } from '../../actions';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { putNote }  from '../../thunks/putNote';
 
 export class Note extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      issues: this.props.note.issues || []
+      issues: this.props.note.issues
     };
   }
 
@@ -25,10 +25,11 @@ export class Note extends Component {
   };
 
   toggleIssueCompletion = (e) => {
+    const { id, title } = this.props.note;
     const index = this.getIndex(e.target.id);
-    const issues = this.createIssuesCopy();
-    issues[index].completed = !issues[index].completed;
-    this.setIssuesInState(issues);
+    const newIssues = this.createIssuesCopy();
+    newIssues[index].completed = !newIssues[index].completed;
+    this.props.putNote({ id, title, issues: newIssues });
   };
 
   renderIncompleteIssues = (issues) => {
@@ -79,15 +80,11 @@ export class Note extends Component {
   }
 }
 
-export const mapStateToProps = (state) => ({
-  notes: state.notes
-});
-
 export const mapDispatchToProps = (dispatch) => ({
-  updateNote: (note) => dispatch(updateNote(note))
+  putNote: (note) => dispatch(putNote(note)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Note);
+export default connect(null, mapDispatchToProps)(Note);
 
 Note.propTypes = {
   note: PropTypes.object,

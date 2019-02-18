@@ -11,6 +11,7 @@ li {
   top: 0;
   width: 100%;
   min-height: 100%;
+  z-index: 9;
 }
 
 .note-pop-up {
@@ -27,6 +28,7 @@ li {
   left: 50%;
   top: 50%; 
   box-shadow: 2px 2px 8px black;
+  z-index: 10;
 
   .title-input {
     border: transparent;
