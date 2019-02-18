@@ -1,15 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Note Note component should match the correct snapshot 1`] = `
-<div
-  className="note-card"
->
-  <h3>
-    Title
-  </h3>
-  <ul />
-  <ul
-    className="completed-list"
+<div>
+  <Route
+    path="/notes/:id"
+    render={[Function]}
   />
+  <Link
+    replace={false}
+    to="/notes/undefined"
+  >
+    <div
+      className="note-card"
+    >
+      <h3>
+        Title
+      </h3>
+      <ul />
+      <ul
+        className="completed-list"
+      />
+    </div>
+  </Link>
 </div>
 `;

@@ -1,16 +1,28 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const Issue = (props) => {
-    const { id, body } = props.issue;
-    return (
-        <li key={id} id={id}>
-            <span>
-                <i onClick={props.toggleIssueCompletion} className="fas fa-square"></i>
-                <input onChange={props.handleBodyChange} placeholder='Add a list item...' value={body}></input>
-            </span>
-            <button onClick={props.removeIssue}>Delete</button>
-        </li>
-    )
+  const { issue: { id, body }, toggleIssueCompletion, handleBodyChange, removeIssue } = props;
+  return (
+    <li key={id} id={id} className="issue-li">
+      <span>
+        <i onClick={toggleIssueCompletion} className="fas fa-square" />
+        <input
+          onChange={handleBodyChange}
+          placeholder='Add a list item...'
+          value={body}
+        />
+      </span>
+      <button onClick={removeIssue} className="delete-button"/>
+    </li>
+  )
 }
 
 export default Issue;
+
+Issue.propTypes = {
+  handleBodyChange: PropTypes.func.isRequired,
+  removeIssue: PropTypes.func.isRequired,
+  issue: PropTypes.object.isRequired,
+  toggleIssueCompletion: PropTypes.func.isRequired,
+}

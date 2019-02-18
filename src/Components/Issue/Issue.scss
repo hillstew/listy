@@ -1,0 +1,22 @@
+.issue-li {
+  border-bottom: 2px solid #ededed;
+  margin: 8px 0;
+
+  i {
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  input {
+    border: transparent;
+  }
+
+  .delete-button {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.fa-square {
+  margin-right: 5px;
+}
