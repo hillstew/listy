@@ -5,7 +5,7 @@ export const Header = ({ togglePopup }) => {
   return (
     <header>
       <NavLink id="title" to="/">
-        <h1>Listy</h1>
+        <h1 id='title-text'>Listy</h1>
       </NavLink>
       <NavLink
         id="add-note-link"

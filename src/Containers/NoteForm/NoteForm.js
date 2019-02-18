@@ -112,18 +112,19 @@ export class NoteForm extends Component {
             onChange={this.handleTitleChange}
             placeholder='Title'
             value={title}
+            maxlength='30'
           />
-          <ul>{incompleteIssues}</ul>
+          <ul className='incomplete-items'>{incompleteIssues}</ul>
           <button onClick={this.addIssue} className="add-issue-button">
             <i className="fas fa-plus-circle form-add-icon" />
           </button>
           {completeIssues.length !== 0 && <h4>Completed</h4>}
           <ul className='completed-items'>{completeIssues}</ul>
           <p>{displayError}</p>
-          <span>
+          <div className='card-footer'>
             <button className='submit-button' />
             <button className='delete-button' onClick={this.removeNote} />
-          </span>
+          </div>
         </form>
       </div>
     )
