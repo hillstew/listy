@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 const Issue = (props) => {
-  const { issue: { id, body }, toggleIssueCompletion, handleBodyChange, removeIssue } = props;
+  const { issue: { id, body }, toggleIssueCompletion, handleBodyChange, removeIssue, completed } = props;
   return (
     <li key={id} id={id} className="issue-li">
       <span>
-        <i onClick={toggleIssueCompletion} className={props.issue.completed ? "fas fa-check-square" : "fas fa-square" }/>
+        <button 
+          onClick={toggleIssueCompletion}
+          className={completed ? 'complete-item' : 'incomplete-item'}
+        />
         <input
           onChange={handleBodyChange}
           placeholder='Add a list item...'
           value={body}
         />
       </span>
-      <button onClick={removeIssue} className="delete-button"/>
+      <button onClick={removeIssue} className="list-delete-button"/>
     </li>
   )
 }

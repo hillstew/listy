@@ -56,10 +56,19 @@
 }
 
 .submit-button {
+  background: url(./images/save-button.png);
+  background-size: cover;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
-  font-family: $main-font
+  font-family: $main-font;
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+
+  &:hover {
+    background: url(./images/save-button-green.png);
+    background-size: cover;
+  }
 }
 
 .delete-button {
@@ -67,8 +76,13 @@
   background-size: cover;
   border: none;
   cursor: pointer;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
+
+  &:hover {
+    background: url(./images/garbage-green.png);
+    background-size: cover;
+  }
 }
 
 li {
