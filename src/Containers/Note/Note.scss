@@ -8,6 +8,7 @@ h3 {
 i {
   font-size: 16px;
   margin: 5px 0 5px 0;
+  padding-right: 10px;
 
   &:hover {
     color: $main-green;
@@ -15,14 +16,21 @@ i {
 }
 
 ul {
-  white-space: nowrap;
   font-family: $main-font;
   padding-inline-start: 0;
   margin: 10px;
   font-size: 18px;
-  max-height: 150px;
+  max-height: 140px;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.issue-body {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .completed-list {
@@ -49,27 +57,6 @@ ul {
   background-color: rgba(0, 0, 0, .5);
 }
 
-.check-box {
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  margin-right: 15px;
-  background-color: $check-box-color;
-  box-shadow: 2px 2px 5px $main-grey;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 2px 5px $main-grey;
-  }
-}
-
-.completed {
-  background-color: $main-light-grey;
-  background: url('./images/check.png');
-  background-size: cover;
-  box-shadow: none;
-}
-
 .note-card {
   width: 280px;
   height: 400px;
@@ -81,6 +68,9 @@ ul {
 }
 
 .edit-button-note {
+  position: relative;
+  left: 210px;
+  bottom: 10px;
   background: url('./images/pencil.png');
   background-size: cover;
   border: none;
@@ -92,6 +82,8 @@ ul {
 
   &:hover {
     transform: scale(1.3);
+    background: url('./images/pencil-green.png');
+    background-size: cover;
   }
 }
 
@@ -101,8 +93,4 @@ a {
 
 a:visited {
   color: black;
-}
-
-li {
-  z-index: 20;
 }
