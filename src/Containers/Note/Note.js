@@ -50,12 +50,12 @@ render() {
         <h3>{this.props.note.title}</h3>
         <ul>
           {
-            this.props.note.issues.filter(issue => !issue.completed).map(issue => <li key={issue.id} id={issue.id}><span><i className="fas fa-square" onClick={this.toggleIssueCompletion} id={issue.id}></i> {issue.body}</span> <i className="fas fa-times"></i></li>)
+            this.props.note.issues.filter(issue => !issue.completed).map(issue => <li key={issue.id} id={issue.id}><span><i className="fas fa-square" onClick={this.toggleIssueCompletion} id={issue.id}></i> {issue.body}</span></li>)
           }
         </ul>
         <ul className='completed-list'>
           {
-            this.props.note.issues.filter(issue => issue.completed).map(issue => <li key={issue.id} id={issue.id}><span><i className="fas fa-check-square" onClick={this.toggleIssueCompletion} id={issue.id}></i> {issue.body}</span> <i className="fas fa-times"></i></li>)
+            this.props.note.issues.filter(issue => issue.completed).map(issue => <li key={issue.id} id={issue.id}><span><i className="fas fa-check-square" onClick={this.toggleIssueCompletion} id={issue.id}></i> {issue.body}</span></li>)
           }
         </ul>
       </div>
