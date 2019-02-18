@@ -1,28 +1,52 @@
 h3 {
   font-family: $main-font;
   margin: 10px;
-  margin-bottom: 20px;
-  font-size: 30px;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
-i:hover {
-  color: $main-green;
+i {
+  font-size: 16px;
+  margin: 5px 0 5px 0;
+
+  &:hover {
+    color: $main-green;
+  }
 }
 
 ul {
+  white-space: nowrap;
   font-family: $main-font;
-  list-style-type: none;
   padding-inline-start: 0;
   margin: 10px;
   font-size: 18px;
+  max-height: 150px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .completed-list {
-  margin-top: 30px;
+  margin-top: 10px;
   color: $main-grey;
   border-top: 1px solid $main-grey;
   padding-top: 10px;
+}
+
+.incomplete-list::-webkit-scrollbar,
+.completed-list::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.incomplete-list::-webkit-scrollbar:vertical,
+.completed-list::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.incomplete-list::-webkit-scrollbar-thumb,
+.completed-list::-webkit-scrollbar-thumb  {
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .check-box {
