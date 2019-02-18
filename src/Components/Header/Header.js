@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
 
 export const Header = ({ togglePopup }) => {
   return (
@@ -10,8 +11,13 @@ export const Header = ({ togglePopup }) => {
       <NavLink
         id="add-note-link"
         to="/new-note">
-        <i className="fas fa-plus-circle new-note-icon" />
+        <i 
+          data-tip
+          data-for="tooltip"
+          className="fas fa-plus-circle new-note-icon"
+        />
       </NavLink>
+      <ReactTooltip id="tooltip" type='dark' effect='solid'>Add a new note</ReactTooltip>
     </header>
   )
 }
