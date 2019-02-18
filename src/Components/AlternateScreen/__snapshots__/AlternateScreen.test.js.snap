@@ -1,9 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AlternateScreen should match the correct snapshot 1`] = `
-<h4
-  className="screen-text"
+<div
+  className="container-404"
 >
-  404 page not found
-</h4>
+  <h4
+    className="screen-text"
+  >
+    <i
+      class="fas fa-exclamation-triangle"
+    />
+    <p
+      className="text-404"
+    >
+      404 page not found
+    </p>
+  </h4>
+</div>
 `;

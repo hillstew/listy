@@ -1,5 +1,5 @@
 import { postNote } from '../postNote';
-import { setError, addNote, setLoading } from '../../actions/index';
+import { setError, addNote } from '../../actions/index';
 import API from '../../utils/api';
 
 describe('postNote', () => {
@@ -9,12 +9,6 @@ describe('postNote', () => {
   beforeEach(() => {
     mockNote = { title: 'Note title', issues: [{ id: '1', body: 'issue 1' }] };
     mockDispatch = jest.fn()
-  })
-
-  it('should call dispatch with the setLoading action', () => {
-    const thunk = postNote(mockNote)
-    thunk(mockDispatch)
-    expect(mockDispatch).toHaveBeenCalledWith(setLoading(true))
   })
 
   it('should call API.fetchData with the correct params', async () => {
@@ -41,12 +35,5 @@ describe('postNote', () => {
     const thunk = postNote(mockNote)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(addNote(expected))
-  })
-
-  it('should dispatch setLoading(false)', async () => {
-    API.fetchData = jest.fn()
-    const thunk = postNote(mockNote)
-    await thunk(mockDispatch)
-    expect(mockDispatch).toHaveBeenCalledWith(setLoading(false))
   })
 })

@@ -148,8 +148,8 @@ export const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
 NoteForm.propTypes = {
-  putNote: PropTypes.func.isRequired,
-  postNote: PropTypes.func.isRequired,
-  deleteNote: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  putNote: PropTypes.func,
+  postNote: PropTypes.func,
+  deleteNote: PropTypes.func,
+  error: PropTypes.string
 }
