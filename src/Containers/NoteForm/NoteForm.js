@@ -14,6 +14,7 @@ export class NoteForm extends Component {
     this.state = {
       id: this.props.id || '',
       title: this.props.title || '',
+      color: this.props.color || '#FFFFFF',
       issues: this.props.issues || [{
         body: '',
         completed: false,
@@ -94,6 +95,11 @@ export class NoteForm extends Component {
         removeIssue={this.removeIssue} 
       />
     )
+  }
+
+  changeNoteColor = (e) => {
+    e.preventDefault();
+    
   }
 
   render() {
