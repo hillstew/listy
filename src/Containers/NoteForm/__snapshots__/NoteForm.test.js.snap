@@ -5,7 +5,7 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
   className="overlay-div"
 >
   <form
-    className="note-pop-up #FFFFFF"
+    className="note-pop-up white"
     onSubmit={[Function]}
   >
     <input

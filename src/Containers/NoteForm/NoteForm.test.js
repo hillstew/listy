@@ -5,7 +5,9 @@ import { putNote } from '../../thunks/putNote';
 import { postNote } from '../../thunks/postNote';
 import { deleteNote } from '../../thunks/deleteNote';
 import shortid from 'shortid';
+import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
+jest.mock('../../Helpers/functions')
 jest.mock('../../thunks/putNote')
 jest.mock('../../thunks/postNote')
 jest.mock('../../thunks/deleteNote')
@@ -90,24 +92,19 @@ describe('NoteForm', () => {
           />
         )
 
-        wrapper.instance().getIndex = jest.fn().mockImplementation( () => {
-          return '1'
-        });
-        wrapper.instance().createIssuesCopy = jest.fn().mockImplementation( () => {
-          return mockNote.issues
-        });
+        getIndex.mockReturnValue('1');
+        createIssuesCopy.mockReturnValue(mockNote.issues);
         wrapper.instance().setIssuesInState = jest.fn();
       });
 
     it('should call getIndex with the correct params', () => {
-      const expected = '1';
       wrapper.instance().handleBodyChange(mockEvent);
-      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
+      expect(getIndex).toHaveBeenCalledWith('1', mockNote.issues);
     });
 
     it('should call createIssuesCopy', () => {
       wrapper.instance().handleBodyChange(mockEvent);
-      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+      expect(createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
@@ -146,24 +143,19 @@ describe('NoteForm', () => {
         />
       )
 
-      wrapper.instance().getIndex = jest.fn().mockImplementation(() => {
-        return '1'
-      });
-      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
-        return mockNote.issues
-      });
+      getIndex.mockReturnValue('1');
+      createIssuesCopy.mockReturnValue(mockNote.issues);
       wrapper.instance().setIssuesInState = jest.fn();
     });
 
     it('should call getIndex with the correct params', () => {
-      const expected = '1';
       wrapper.instance().toggleIssueCompletion(mockEvent);
-      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
+      expect(getIndex).toHaveBeenCalledWith('1', mockNote.issues);
     });
 
     it('should call createIssuesCopy', () => {
       wrapper.instance().toggleIssueCompletion(mockEvent);
-      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+      expect(createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
@@ -202,15 +194,13 @@ describe('NoteForm', () => {
         />
       )
 
-      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
-        return mockNote.issues
-      });
+      createIssuesCopy.mockReturnValue(mockNote.issues);
       wrapper.instance().setIssuesInState = jest.fn();
     });
 
     it('should call createIssuesCopy', () => {
       wrapper.instance().addIssue(mockEvent);
-      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+      expect(createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
@@ -254,22 +244,19 @@ describe('NoteForm', () => {
         />
       )
 
-      wrapper.instance().getIndex = jest.fn().mockImplementation(() => '1')
-      wrapper.instance().createIssuesCopy = jest.fn().mockImplementation(() => {
-        return mockNote.issues
-      });
+      getIndex.mockReturnValue('1');
+      createIssuesCopy.mockReturnValue(mockNote.issues);
       wrapper.instance().setIssuesInState = jest.fn();
     });
 
     it('should call getIndex with the correct params', () => {
-      const expected = '1';
       wrapper.instance().removeIssue(mockEvent);
-      expect(wrapper.instance().getIndex).toHaveBeenCalledWith(expected);
+      expect(getIndex).toHaveBeenCalledWith('1', mockNote.issues);
     });
 
     it('should call createIssuesCopy', () => {
       wrapper.instance().removeIssue(mockEvent);
-      expect(wrapper.instance().createIssuesCopy).toHaveBeenCalled();
+      expect(createIssuesCopy).toHaveBeenCalled();
     });
 
     it('should call setIssuesInState with the correct params', () => {
@@ -297,6 +284,7 @@ describe('NoteForm', () => {
       mockNote = {
         id: '1',
         title: 'Title',
+        color: 'white',
         issues: [
           { id: '1', body: 'issue text', completed: false },
           { id: '2', body: 'more issue text', completed: true },
@@ -309,6 +297,7 @@ describe('NoteForm', () => {
         <NoteForm
           id={mockNote.id}
           title={''}
+          color={'white'}
           issues={[]}
           displayError={mockError}
         />
@@ -320,6 +309,7 @@ describe('NoteForm', () => {
     it('should call postNote with the correct params', async () => {
       const expected = {
         title: 'Title',
+        color: 'white',
         issues: [
           { id: '1', body: 'issue text', completed: false },
           { id: '2', body: 'more issue text', completed: true },
@@ -342,6 +332,7 @@ describe('NoteForm', () => {
       const expected = {
         id: '1',
         title: 'Title',
+        color: 'white',
         issues: [
           { id: '1', body: 'issue text', completed: false },
           { id: '2', body: 'more issue text', completed: true },
@@ -360,8 +351,8 @@ describe('NoteForm', () => {
       await expect(wrapper.instance().props.putNote).toHaveBeenCalledWith(expected);
     });
 
-    it('should call history.goBack() if everything is okay', async () => {
-      const mockHistory = { goBack: jest.fn()};
+    it('should call history.replace() if everything is okay', async () => {
+      const mockHistory = { replace: jest.fn()};
       wrapper = shallow(
         <NoteForm
           id={mockNote.id}
@@ -374,7 +365,7 @@ describe('NoteForm', () => {
         />
       )
       await wrapper.instance().handleSubmit(mockEvent);
-      expect(wrapper.instance().props.history.goBack).toHaveBeenCalled();
+      expect(wrapper.instance().props.history.replace).toHaveBeenCalled();
     });
 
     it('should set state with an error is something is not okay', async () => {
@@ -425,8 +416,8 @@ describe('NoteForm', () => {
       expect(wrapper.instance().props.deleteNote).toHaveBeenCalledWith('1');
     });
 
-    it('should call history.goBack() if everything is okay', async () => {
-      const mockHistory = { goBack: jest.fn() };
+    it('should call history.replace() if everything is okay', async () => {
+      const mockHistory = { replace: jest.fn() };
       wrapper = shallow(
         <NoteForm
           id={mockNote.id}
@@ -437,7 +428,7 @@ describe('NoteForm', () => {
         />
       )
       await wrapper.instance().removeNote(mockEvent);
-      expect(wrapper.instance().props.history.goBack).toHaveBeenCalled();
+      expect(wrapper.instance().props.history.replace).toHaveBeenCalled();
     });
 
     it('should set state with an error is something is not okay', async () => {
@@ -453,6 +444,39 @@ describe('NoteForm', () => {
       )
       await wrapper.instance().removeNote(mockEvent);
       expect(wrapper.state('displayError')).toEqual('Note could not be deleted. Please try again.');
+    });
+  });
+
+  describe('changeNoteColor', () => {
+    let wrapper;
+    let mockNote;
+    let mockEvent;
+
+    beforeEach(() => {
+      mockEvent = { 
+        preventDefault: () => { },
+        target: { value: 'blue' }
+      };
+      mockNote = {
+        id: '1',
+        title: 'Title',
+        color: 'white',
+        issues: [
+          { id: '1', body: 'issue text', completed: false },
+          { id: '2', body: 'more issue text', completed: true },
+        ],
+      }
+      wrapper = shallow(
+        <NoteForm
+          {...mockNote}
+        />
+      )
+    });
+
+    it('should update the color in state', () => {
+      expect(wrapper.state('color')).toEqual('white')
+      wrapper.instance().changeNoteColor(mockEvent);
+      expect(wrapper.state('color')).toEqual('blue')
     });
   });
 
