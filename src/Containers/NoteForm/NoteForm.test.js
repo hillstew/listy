@@ -41,21 +41,6 @@ describe('NoteForm', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('should find the correct index when getIndex is called', () => {
-      const expected = 0;
-      const result = wrapper.instance().getIndex('1');
-      expect(result).toEqual(expected);
-    });
-
-    it('should create a copy of issues when createIssuesCopy is called', () => {
-      const expected = [
-        { id: '1', body: 'issue text' },
-        { id: '2', body: 'more issue text' },
-      ];
-      const result = wrapper.instance().createIssuesCopy();
-      expect(result).toEqual(expected);
-    });
-
     it('should set state with a new title when handleTitleChange is called', () => {
       mockEvent = { 
         preventDefault: () => {},
