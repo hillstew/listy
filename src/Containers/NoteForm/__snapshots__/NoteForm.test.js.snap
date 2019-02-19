@@ -10,11 +10,14 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
   >
     <input
       className="title-input"
+      maxLength="30"
       onChange={[Function]}
       placeholder="Title"
       value="Title"
     />
-    <ul />
+    <ul
+      className="incomplete-items"
+    />
     <button
       className="add-issue-button"
       onClick={[Function]}
@@ -23,22 +26,21 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
         className="fas fa-plus-circle form-add-icon"
       />
     </button>
-    <h4>
-      Completed
-    </h4>
-    <ul />
+    <ul
+      className="completed-items"
+    />
     <p />
-    <span>
+    <div
+      className="card-footer"
+    >
       <button
         className="submit-button"
-      >
-        SAVE
-      </button>
+      />
       <button
         className="delete-button"
         onClick={[Function]}
       />
-    </span>
+    </div>
   </form>
 </div>
 `;

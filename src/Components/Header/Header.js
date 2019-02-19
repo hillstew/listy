@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip'
 export const Header = ({ togglePopup }) => {
   return (
     <header>
-      <NavLink id="title" to="/">
+      <NavLink to="/">
         <h1 id='title-text'>Listy</h1>
       </NavLink>
       <NavLink

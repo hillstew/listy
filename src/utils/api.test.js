@@ -26,6 +26,16 @@ describe('API', () => {
       expect(window.fetch).toHaveBeenCalledWith(expectedUrl, expectedParams);
     });
 
+    it('should return nothing if everything is okay with a 204 status', async () => {
+      method = 'DELETE'
+      window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+        status: 204,
+        ok: true
+      }));
+      const result = await API.fetchData(path, method, data)
+      expect(result).toEqual(undefined);
+    });
+
     it('should return a response object if everything is okay', async () => {
       const mockNote = { id: '1', title: 'Note title', issues: [{ id: '1', body: 'issue 1' }] };
       window.fetch = jest.fn().mockImplementation(() => Promise.resolve({

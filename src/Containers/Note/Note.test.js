@@ -1,7 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme';
 import { Note, mapDispatchToProps } from './Note';
-import { updateNote } from '../../actions/index';
+import { putNote } from '../../thunks/putNote';
+
+jest.mock('../../thunks/putNote')
 
 describe('Note', () => {
     describe('Note component', () => {
@@ -22,15 +24,15 @@ describe('Note', () => {
     });
 
     describe('mapDispatchToProps', () => {
-        it('should call dispatch with a updateNote action when updateNote is called', () => {
+        it('should call dispatch with a putNote action when putNote is called', () => {
             let mockNote = {
                 title: 'Title',
                 issues: [],
             }
             const mockDispatch = jest.fn();
-            const actionToDispatch = updateNote(mockNote);
+            const actionToDispatch = putNote(mockNote);
             const mappedProps = mapDispatchToProps(mockDispatch);
-            mappedProps.updateNote(mockNote);
+            mappedProps.putNote(mockNote);
             expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
         });
     });

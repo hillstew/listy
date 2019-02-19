@@ -5,10 +5,11 @@ exports[`Header should match the snapshot 1`] = `
   <NavLink
     activeClassName="active"
     aria-current="page"
-    id="title"
     to="/"
   >
-    <h1>
+    <h1
+      id="title-text"
+    >
       Listy
     </h1>
   </NavLink>
@@ -20,7 +21,19 @@ exports[`Header should match the snapshot 1`] = `
   >
     <i
       className="fas fa-plus-circle new-note-icon"
+      data-for="tooltip"
+      data-tip={true}
     />
   </NavLink>
+  <ReactTooltip
+    effect="solid"
+    id="tooltip"
+    insecure={true}
+    resizeHide={true}
+    type="dark"
+    wrapper="div"
+  >
+    Add a new note
+  </ReactTooltip>
 </header>
 `;

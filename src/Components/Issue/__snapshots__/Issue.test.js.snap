@@ -7,18 +7,19 @@ exports[`Issue should match the correct snapshot 1`] = `
   key="1"
 >
   <span>
-    <i
-      className="fas fa-square"
+    <button
+      className="incomplete-item"
       onClick={[MockFunction]}
     />
     <input
+      maxlength="45"
       onChange={[MockFunction]}
       placeholder="Add a list item..."
       value=""
     />
   </span>
   <button
-    className="delete-button"
+    className="list-delete-button"
     onClick={[MockFunction]}
   />
 </li>

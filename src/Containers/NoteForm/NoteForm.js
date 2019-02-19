@@ -109,7 +109,7 @@ export class NoteForm extends Component {
             onChange={this.handleTitleChange}
             placeholder='Title'
             value={title}
-            maxlength='30'
+            maxLength='30'
           />
           <ul className='incomplete-items'>{incompleteIssues}</ul>
           <button onClick={this.addIssue} className="add-issue-button">
@@ -141,8 +141,8 @@ export const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
 
 NoteForm.propTypes = {
-  putNote: PropTypes.func.isRequired,
-  postNote: PropTypes.func.isRequired,
-  deleteNote: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  putNote: PropTypes.func,
+  postNote: PropTypes.func,
+  deleteNote: PropTypes.func,
+  error: PropTypes.string
 }

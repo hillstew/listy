@@ -19,7 +19,6 @@ export class App extends Component {
       <div>
         <Fragment>
           <Header/>
-          {loading && <AlternateScreen text='Loading notes...' />}
           {!loading && 
             <div>
               <Switch>

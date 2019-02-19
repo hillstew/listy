@@ -25,6 +25,10 @@ ul {
   overflow-y: scroll;
 }
 
+p {
+  font-family: $main-font;
+}
+
 .issue-body {
   display: inline-block;
   width: 200px;
