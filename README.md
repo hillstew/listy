@@ -3,14 +3,14 @@
 An app created with both front-end and back-end frameworks which allows users to save, edit, and delete notes. The front-end is comprised of React, Redux, and React-Router. Whereas, the back-end is built using Node and Express.
 
 ### Set-Up Backend:
-Clone https://github.com/hillstew/listy-api
-Run `npm install` from the root directory
-Run `nmp start` and visit localhost:3001/api/v1/notes in your browser
+- Clone https://github.com/hillstew/listy-api
+- Run `npm install` from the root directory
+- Run `nmp start` and visit localhost:3001/api/v1/notes in your browser
 
 ### Set-Up Frontend:
-Clone this repo  
-Run `npm install` from the root directory  
-Run `npm start` and visit localhost:3000 in your browser  
+- Clone this repo  
+- Run `npm install` from the root directory  
+- Run `npm start` and visit localhost:3000 in your browser  
 
 ### Primary Technologies Used:
 * React
