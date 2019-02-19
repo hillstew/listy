@@ -4,6 +4,10 @@ li {
   justify-content: space-between;
 }
 
+button {
+  background: none;
+}
+
 .overlay-div {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
@@ -43,6 +47,7 @@ li {
   }
 
   input {
+    background: none;
     overflow-wrap: break-word;
     width: 270px;
   }
@@ -53,7 +58,6 @@ li {
   color: $main-green;
   cursor: pointer;
   font-size: 25px;
-  text-shadow: 0px 4px 4px #d0d0d0;
   transition-duration: 1s;
 
   &:hover {
@@ -134,4 +138,25 @@ li {
     background-size: cover;
   }
 }
+
+.white {
+ background-color: #ffffff;
+}
+
+.blue {
+ background-color: #a7ffeb;
+}
+
+.purple {
+ background-color: #d7aefb;
+}
+
+.green {
+ background-color: #ccff90;
+}
+
+.red {
+ background-color: #f28b82;
+}
+
 

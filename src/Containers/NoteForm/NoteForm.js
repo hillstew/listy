@@ -50,11 +50,11 @@ export class NoteForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { putNote, postNote, error, history } = this.props;
-    const { id, title, issues } = this.state;
+    const { id, title, color, issues } = this.state;
     if (title === '' || !issues.length) {
       this.setState({ displayError: 'Please add a title and at least one list item'});
     } else {
-      id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
+      id === '' ? postNote({ title, color, issues }) : putNote({ id, title, color, issues });
       error === '' ? history.replace('/') : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
     }
   }
@@ -99,17 +99,17 @@ export class NoteForm extends Component {
 
   changeNoteColor = (e) => {
     e.preventDefault();
-    
+    this.setState({ color: e.target.value })
   }
 
   render() {
-    const { title, displayError } = this.state;
+    const { title, color, displayError } = this.state;
     const incompleteIssues = this.showIssues(false);
     const completeIssues = this.showIssues(true);
 
     return (
       <div className='overlay-div'>
-        <form className='note-pop-up' onSubmit={this.handleSubmit}>
+        <form className={`note-pop-up ${color}`} onSubmit={this.handleSubmit}>
           <input
             className='title-input'
             onChange={this.handleTitleChange}
@@ -125,6 +125,14 @@ export class NoteForm extends Component {
           <ul className='completed-items'>{completeIssues}</ul>
           <p>{displayError}</p>
           <div className='card-footer'>
+            <select onChange={this.changeNoteColor}>
+              <option value='default'>Change Note Color</option>
+              <option value='white'>White</option>
+              <option value='blue'>Blue</option>
+              <option value='purple'>Purple</option>
+              <option value='green'>Green</option>
+              <option value='red'>Red</option>
+            </select>
             <button className='submit-button' />
             <button className='delete-button' onClick={this.removeNote} />
           </div>
