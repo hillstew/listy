@@ -5,7 +5,7 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
   className="overlay-div"
 >
   <form
-    className="note-pop-up"
+    className="note-pop-up #FFFFFF"
     onSubmit={[Function]}
   >
     <input
@@ -29,10 +29,47 @@ exports[`NoteForm NoteForm component should match the correct snapshot 1`] = `
     <ul
       className="completed-items"
     />
-    <p />
+    <p
+      className="error-message"
+    />
     <div
       className="card-footer"
     >
+      <select
+        id="drop-down"
+        onChange={[Function]}
+      >
+        <option
+          value="default"
+        >
+          Change Note Color
+        </option>
+        <option
+          value="white"
+        >
+          White
+        </option>
+        <option
+          value="blue"
+        >
+          Blue
+        </option>
+        <option
+          value="purple"
+        >
+          Purple
+        </option>
+        <option
+          value="green"
+        >
+          Green
+        </option>
+        <option
+          value="red"
+        >
+          Red
+        </option>
+      </select>
       <button
         className="submit-button"
       />

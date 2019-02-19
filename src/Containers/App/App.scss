@@ -1,91 +1,91 @@
 *,
 *:after,
 *:before {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient($main-grey, #5f6b7a);
-  background-repeat: no-repeat;
+    background: linear-gradient($main-grey, #5f6b7a);
+    background-repeat: no-repeat;
+    margin: 0;
+    min-height: 100vh;
+    padding: 0;
 }
 
 button,
 input,
 select {
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 }
 
 @media screen and (max-width: 655px) {
-  #title-text {
-      margin-left: -60px;
-  }
+    #title-text {
+        margin-left: -60px;
+    }
 };
 
 @media screen and (max-width: 400px) {
-  #title-text {
-      margin-left: -73px;
-  }
+    #title-text {
+        margin-left: -73px;
+    }
 };
 
 @media screen and (max-width: 360px) {    
-  .note-pop-up {
-      width: 300px;
-      left: 230px;
-  }
+    .note-pop-up {
+        left: 230px;
+        width: 300px;
+    }
 
-  .note-pop-up input {
-      margin: 0;
-      width: 190px;
-  }
+    .note-pop-up input {
+        margin: 0;
+        width: 190px;
+    }
 
-  .title-input {
-      width: 200px;
-  }
+    .title-input {
+        width: 200px;
+    }
 
-  li {
-      width: 226px;
-  }
+    li {
+        width: 226px;
+    }
 };
 
 @media screen and (max-width: 375px) {    
-  .note-pop-up {
-      left: 237px;
-      width: 300px;
-  }
+    .note-pop-up {
+        left: 237px;
+        width: 300px;
+    }
 };
 
 @media screen and (max-width: 360px) {    
-  .note-pop-up {
-      left: 229px;
-  }
+    .note-pop-up {
+        left: 229px;
+    }
 };
 
 @media screen and (max-width: 320px) {
-  .note-pop-up {
-      width: 290px;
-      left: 215px;
-  }
-  
-  .note-card {
-      height: 315px;
-  }
+    .note-pop-up {
+        left: 215px;
+        width: 290px;
+    }
+    
+    .note-card {
+        height: 315px;
+    }
 
-  .note-pop-up input {
-      width: 180px;
-  }
+    .note-pop-up input {
+        width: 180px;
+    }
 
-  .title-input {
-      width: 160px;
-  }
+    .title-input {
+        width: 160px;
+    }
 
-  li {
-      width: 218px;
-  }
+    li {
+        width: 218px;
+    }
 };
 
 

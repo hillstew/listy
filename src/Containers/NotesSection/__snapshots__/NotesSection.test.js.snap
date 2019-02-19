@@ -1,8 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotesSection NotesSection component should match the correct snapshot 1`] = `
-<div
-  id="notes-wrapper"
+<Masonry
+  breakpointCols={
+    Object {
+      "1100": 3,
+      "500": 1,
+      "700": 2,
+      "default": 4,
+    }
+  }
+  className="my-masonry-grid"
+  columnClassName="my-masonry-grid_column"
 >
   <Connect(Note)
     key="1"
@@ -24,5 +33,5 @@ exports[`NotesSection NotesSection component should match the correct snapshot 1
       }
     }
   />
-</div>
+</Masonry>
 `;

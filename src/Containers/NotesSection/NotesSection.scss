@@ -1,11 +1,11 @@
 .my-masonry-grid {
   display: -webkit-box; 
   display: grid;
-  padding-top: 240px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
   grid-gap: 30px;
-  margin: 0 auto 40px auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
   justify-content: center;
+  margin: 0 auto 40px auto;
+  padding-top: 240px;
 }
 
 .my-masonry-grid_column {
