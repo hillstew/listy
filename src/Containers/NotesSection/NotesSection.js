@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css';
 
-export const NotesSection = ({ notes }) => {
-
+export const NotesSection = ({ notes, location }) => {
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -18,7 +17,7 @@ export const NotesSection = ({ notes }) => {
       breakpointCols={breakpointColumnsObj}
       className='my-masonry-grid'
       columnClassName='my-masonry-grid_column'>
-      {notes.map(note => <Note note={note} key={note.id}/>)}
+      {notes.map(note => <Note note={note} key={note.id} location={location} />)}
     </Masonry>
   )
 }
