@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Issue = (props) => {
   const {
     issue: { id, body }, location: { pathname }, 
-    toggleIssueCompletion, handleBodyChange, removeIssue, completed, location, noteId } = props;
+    toggleIssueCompletion, handleBodyChange, removeIssue, completed, noteId } = props;
   return (
     <li key={id} id={id} className="issue-li">
       <div>
@@ -18,12 +18,12 @@ const Issue = (props) => {
             placeholder="Add a list item..."
             value={body}
             maxLength="45"
-          />
+          /> 
         )}
         {pathname === '/' && <Fragment>{body}</Fragment>}
       </div>
-      {pathname === `/notes/${noteId}` && (
-        <button onClick={removeIssue} className="list-delete-button" />
+      {(pathname === `/notes/${noteId}` || pathname === '/new-note') && (
+        <button onClick={removeIssue} className="list-delete-button" /> 
       )}
     </li>
   );
