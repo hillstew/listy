@@ -84,9 +84,12 @@ export class NoteForm extends Component {
   }
 
   showIssues = (completed) => {
-    const { issues } = this.state;
-    return issues.filter(issue => issue.completed === completed).map(issue =>
-      <Issue 
+    const { issues, id } = this.state;
+    return issues.filter(issue => issue.completed === completed)
+      .map(issue =>
+      <Issue
+        noteId={id} 
+        location={this.props.location}
         key={issue.id}
         completed={completed}
         issue={issue} 
