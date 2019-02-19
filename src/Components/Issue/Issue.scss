@@ -43,8 +43,8 @@
 
 .complete-item {
   @include dimensions(16px, 16px);
-  background-size: cover;
   background: url(./images/greycheck.png);
+  background-size: cover;
   border: none;
   cursor: pointer;
   margin-top: 5px;
