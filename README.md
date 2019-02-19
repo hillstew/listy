@@ -8,7 +8,7 @@ An app created with both front-end and back-end frameworks which allows users to
 - Run `npm start` and visit localhost:3001/api/v1/notes in your browser
 
 ### Set-Up Frontend:
-- Clone this repo  
+- Clone https://github.com/kaohman/listy.git
 - Run `npm install` from the root directory  
 - Run `npm start` and visit localhost:3000 in your browser  
 
