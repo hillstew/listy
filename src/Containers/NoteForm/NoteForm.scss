@@ -1,7 +1,12 @@
 li {
+  padding-right: 5px;
   font-size: 14px;
   display: flex;
   justify-content: space-between;
+}
+
+button {
+  background: none;
 }
 
 .overlay-div {
@@ -43,6 +48,7 @@ li {
   }
 
   input {
+    background: none;
     overflow-wrap: break-word;
     width: 270px;
   }
@@ -53,7 +59,6 @@ li {
   color: $main-green;
   cursor: pointer;
   font-size: 25px;
-  text-shadow: 0px 4px 4px #d0d0d0;
   transition-duration: 1s;
 
   &:hover {
@@ -85,20 +90,35 @@ li {
 
 .incomplete-items::-webkit-scrollbar:vertical,
 .completed-items::-webkit-scrollbar:vertical {
-  width: 11px;
+  width: 8px;
 }
 
 .incomplete-items::-webkit-scrollbar-thumb,
 .completed-items::-webkit-scrollbar-thumb  {
   border-radius: 8px;
-  border: 2px solid white;
   background-color: rgba(0, 0, 0, .5);
+}
+
+.error-message {
+  font-family: $main-font;
+  position: relative;
+  bottom: 40px;
+  text-align: center;
 }
 
 .card-footer {
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+
+#drop-down {
+  position: relative;
+  bottom: 5px;
+  font-family: $main-font;
+  margin-right: 10px;
+  border: 1px solid black;
+  background-color: white;
 }
 
 .submit-button {
@@ -134,4 +154,25 @@ li {
     background-size: cover;
   }
 }
+
+.white {
+ background-color: #ffffff;
+}
+
+.blue {
+ background-color: #a7ffeb;
+}
+
+.purple {
+ background-color: #d7aefb;
+}
+
+.green {
+ background-color: #ccff90;
+}
+
+.red {
+ background-color: #f28b82;
+}
+
 

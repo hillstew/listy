@@ -6,13 +6,13 @@ import { putNote }  from '../../thunks/putNote';
 import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
 export const Note = ({note, putNote}) => {
-  const { id, title, issues } = note;
+  const { id, title, color, issues } = note;
 
   const toggleIssueCompletion = (e) => {
     const index = getIndex(e.target.id, issues);
     const newIssues = createIssuesCopy(issues);
     newIssues[index].completed = !newIssues[index].completed;
-    putNote({ id, title, issues: newIssues });
+    putNote({ id, title, color, issues: newIssues });
   };
 
   const renderIssues = (completed) => {
@@ -34,7 +34,7 @@ export const Note = ({note, putNote}) => {
   };
 
   return (
-    <div className='note-card'>
+    <div className={`note-card ${color}`}>
       <h3>{title}</h3>
       <ul className='incomplete-list'>{renderIssues(false)}</ul>
       <ul className='completed-list'>{renderIssues(true)}</ul>
