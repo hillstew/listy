@@ -1,21 +1,21 @@
 import '../../main.scss';
-import React, { Component, Fragment } from 'react'
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
-import NotesSection from '../NotesSection/NotesSection'
-import NoteForm from '../NoteForm/NoteForm'
-import AlternateScreen from '../../Components/AlternateScreen/AlternateScreen'
-import { connect } from 'react-redux'
-import { fetchNotes } from '../../thunks/fetchNotes'
-import { Header } from '../../Components/Header/Header'
-import PropTypes from "prop-types"
+import React, { Component, Fragment } from 'react';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import NotesSection from '../NotesSection/NotesSection';
+import NoteForm from '../NoteForm/NoteForm';
+import AlternateScreen from '../../Components/AlternateScreen/AlternateScreen';
+import { connect } from 'react-redux';
+import { fetchNotes } from '../../thunks/fetchNotes';
+import { Header } from '../../Components/Header/Header';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   componentDidMount() {
-    this.props.fetchNotes()
+    this.props.fetchNotes();
   }
 
   render() {
-    const { notes, loading, history } = this.props
+    const { notes, loading, history } = this.props;
     return (
       <div>
         <Fragment>
@@ -23,16 +23,16 @@ export class App extends Component {
           {!loading && 
             <div>
               <Switch>
-                <Route path="/" component={NotesSection} />
-                <Route path='*' render={() => <AlternateScreen text='404: Page Not Found' />} />
+                {/* This order is required for Router to work correctly */}
                 <Route path='/not-found' render={() => <AlternateScreen text='404: Page Not Found' />} />
+                <Route path='/' component={NotesSection} />
+                <Route path='*' render={() => <AlternateScreen text='404: Page Not Found' />} />
               </Switch>
-              <Route path="/new-note" component={NoteForm} />
+              <Route path='/new-note' component={NoteForm} />
               <Route
-                path="/notes/:id"
+                path='/notes/:id'
                 render={({ match }) => {
-                  const { id } = match.params
-                  const note = notes.find((note) => note.id === id)
+                  const note = notes.find((note) => note.id === match.params.id);
                   if (note) {
                     return <NoteForm history={history} {...note} />
                   } else {
