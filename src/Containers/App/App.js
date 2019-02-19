@@ -15,7 +15,7 @@ export class App extends Component {
   }
 
   render() {
-    const { notes, loading, history } = this.props;
+    const { notes, loading, history, location } = this.props;
     return (
       <div>
         <Fragment>
@@ -34,7 +34,7 @@ export class App extends Component {
                 render={({ match }) => {
                   const note = notes.find((note) => note.id === match.params.id);
                   if (note) {
-                    return <NoteForm history={history} {...note} />
+                    return <NoteForm history={history} {...note} location={location}/>
                   } else {
                     return <Redirect to={'/not-found'} />
                   }
