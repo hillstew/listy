@@ -14,6 +14,7 @@ export class Note extends Component {
   }
 
   toggleIssueCompletion = (e) => {
+    const { id, title } = this.props;
     const index = getIndex(e.target.id, this.state.issues);
     const newIssues = createIssuesCopy(this.state.issues);
     newIssues[index].completed = !newIssues[index].completed;
