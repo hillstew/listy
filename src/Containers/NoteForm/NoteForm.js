@@ -54,7 +54,7 @@ export class NoteForm extends Component {
       this.setState({ displayError: 'Please add a title and at least one list item'});
     } else {
       id === '' ? postNote({ title, issues }) : putNote({ id, title, issues });
-      error === '' ? history.goBack() : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
+      error === '' ? history.replace('/') : this.setState({ displayError: 'Note could not be created/updated. Please try again.' });
     }
   }
 
@@ -64,7 +64,7 @@ export class NoteForm extends Component {
     if (this.state.id !== '') {
       deleteNote(this.state.id);
     }
-    error === '' ? history.goBack() : this.setState({ displayError: 'Note could not be deleted. Please try again.' });
+    error === '' ? history.replace('/') : this.setState({ displayError: 'Note could not be deleted. Please try again.' });
   }
 
   addIssue = (e) => {
