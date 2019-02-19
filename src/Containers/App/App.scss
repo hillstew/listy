@@ -19,4 +19,72 @@ input {
   }
 }
 
+@media screen and (max-width: 655px) {
+  #title-text {
+      margin-left: -60px;
+  }
+};
+
+@media screen and (max-width: 400px) {
+  #title-text {
+      margin-left: -73px;
+  }
+};
+
+@media screen and (max-width: 360px) {    
+  .note-pop-up {
+      width: 300px;
+      left: 230px;
+  }
+
+  .note-pop-up input {
+      margin: 0;
+      width: 190px;
+  }
+
+  .title-input {
+      width: 200px;
+  }
+
+  li {
+      width: 226px;
+  }
+};
+
+@media screen and (max-width: 375px) {    
+  .note-pop-up {
+      left: 237px;
+      width: 300px;
+  }
+};
+
+@media screen and (max-width: 360px) {    
+  .note-pop-up {
+      left: 229px;
+  }
+};
+
+@media screen and (max-width: 320px) {
+  .note-pop-up {
+      width: 290px;
+      left: 215px;
+  }
+  
+  .note-card {
+      height: 315px;
+  }
+
+  .note-pop-up input {
+      width: 180px;
+  }
+
+  .title-input {
+      width: 160px;
+  }
+
+  li {
+      width: 218px;
+  }
+};
+
 

@@ -14,7 +14,7 @@ export class Note extends Component {
   }
 
   toggleIssueCompletion = (e) => {
-    const { id, title } = this.props.note;
+    const { id, title, issues } = this.props.note;
     const index = getIndex(e.target.id, this.state.issues);
     const newIssues = createIssuesCopy(this.state.issues);
     newIssues[index].completed = !newIssues[index].completed;
@@ -31,7 +31,7 @@ export class Note extends Component {
         <li key={issue.id} id={issue.id}>
           <div className='issue-body'>
             <i
-              className="fas fa-square"
+              className='fas fa-square'
               onClick={this.toggleIssueCompletion}
               id={issue.id}
             />
@@ -48,7 +48,7 @@ export class Note extends Component {
         <li key={issue.id} id={issue.id}>
           <div className='issue-body'>
             <i
-              className="fas fa-check-square"
+              className='fas fa-check-square'
               onClick={this.toggleIssueCompletion}
               id={issue.id}
             />
@@ -61,12 +61,12 @@ export class Note extends Component {
   render() {
     const { note, note: { issues, title }} = this.props;
     return (
-        <div className="note-card">
+        <div className='note-card'>
           <h3>{title}</h3>
           <ul className='incomplete-list'>{this.renderIncompleteIssues(issues)}</ul>
           <ul className='completed-list'>{this.renderCompleteIssues(issues)}</ul>
           <Link to={`/notes/${note.id}`}>
-            <button className="edit-button-note" />
+            <button className='edit-button-note' />
           </Link>
         </div>
     );

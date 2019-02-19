@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const Issue = (props) => {
   const { issue: { id, body }, toggleIssueCompletion, handleBodyChange, removeIssue, completed } = props;
   return (
-    <li key={id} id={id} className="issue-li">
+    <li key={id} id={id} className='issue-li'>
       <span>
         <button 
           onClick={toggleIssueCompletion}
@@ -17,7 +17,7 @@ const Issue = (props) => {
           maxLength='45'
         />
       </span>
-      <button onClick={removeIssue} className="list-delete-button"/>
+      <button onClick={removeIssue} className='list-delete-button'/>
     </li>
   )
 }

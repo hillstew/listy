@@ -15,7 +15,7 @@ export class NoteForm extends Component {
       id: this.props.id || '',
       title: this.props.title || '',
       issues: this.props.issues || [{
-        body: "",
+        body: '',
         completed: false,
         id: shortid(),
       }],
