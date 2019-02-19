@@ -14,7 +14,7 @@ export class NoteForm extends Component {
     this.state = {
       id: this.props.id || '',
       title: this.props.title || '',
-      color: this.props.color || '#FFFFFF',
+      color: this.props.color || 'white',
       issues: this.props.issues || [{
         body: '',
         completed: false,

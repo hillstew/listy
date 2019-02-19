@@ -2,7 +2,7 @@
 
 exports[`Note Note component should match the correct snapshot 1`] = `
 <div
-  className="note-card"
+  className="note-card undefined"
 >
   <h3>
     Title
