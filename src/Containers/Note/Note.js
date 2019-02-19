@@ -14,7 +14,7 @@ export class Note extends Component {
   }
 
   toggleIssueCompletion = (e) => {
-    const { id, title } = this.props;
+    const { id, title } = this.props.note;
     const index = getIndex(e.target.id, this.state.issues);
     const newIssues = createIssuesCopy(this.state.issues);
     newIssues[index].completed = !newIssues[index].completed;
@@ -23,7 +23,7 @@ export class Note extends Component {
 
   setIssuesInState = (issues) => {
     this.setState({ issues });
-    };
+  };
 
   renderIncompleteIssues = (issues) => {
     return issues.filter((issue) => !issue.completed)
