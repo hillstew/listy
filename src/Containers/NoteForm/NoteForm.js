@@ -123,9 +123,9 @@ export class NoteForm extends Component {
           </button>
           {completeIssues.length !== 0 && <h4>Completed</h4>}
           <ul className='completed-items'>{completeIssues}</ul>
-          <p>{displayError}</p>
+          <p className='error-message'>{displayError}</p>
           <div className='card-footer'>
-            <select onChange={this.changeNoteColor}>
+            <select id='drop-down' onChange={this.changeNoteColor}>
               <option value='default'>Change Note Color</option>
               <option value='white'>White</option>
               <option value='blue'>Blue</option>

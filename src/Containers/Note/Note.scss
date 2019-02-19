@@ -20,7 +20,6 @@ ul {
   padding-inline-start: 0;
   margin: 10px;
   font-size: 18px;
-  max-height: 140px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -51,19 +50,17 @@ p {
 
 .incomplete-list::-webkit-scrollbar:vertical,
 .completed-list::-webkit-scrollbar:vertical {
-  width: 11px;
+  width: 8px;
 }
 
 .incomplete-list::-webkit-scrollbar-thumb,
 .completed-list::-webkit-scrollbar-thumb  {
   border-radius: 8px;
-  border: 2px solid white;
   background-color: rgba(0, 0, 0, .5);
 }
 
 .note-card {
   width: 280px;
-  height: 350px;
   background-color: #FFF;
   border: 1px solid $main-grey;
   border-radius: 10px;
