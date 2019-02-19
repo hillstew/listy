@@ -1,7 +1,6 @@
 .screen-text {
-  color: white;
+  @include fontStyling(white, 40px);
   font-family: "Open Sans", sans-serif;
-  font-size: 40px;
   font-weight: 400;
   margin: 0;
   padding-top: 240px;
@@ -9,8 +8,7 @@
 }
 
 .fa-exclamation-triangle {
-  color: #dac279;
-  font-size: 85px;
+  @include fontStyling(#dac279, 85px)
 }
 
 .container-404 {
@@ -22,6 +20,5 @@
 }
 
 .text-404 {
-  color: $main-light-grey;
-  font-size: 35px;
+  @include fontStyling($main-light-grey, 35px)
 }
