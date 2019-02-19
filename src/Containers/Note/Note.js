@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { putNote }  from '../../thunks/putNote';
+import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
 export class Note extends Component {
   constructor(props) {
@@ -12,25 +13,16 @@ export class Note extends Component {
     };
   }
 
-  getIndex = (id) => {
-    return this.state.issues.findIndex((issue) => issue.id == id);
-  };
-
-  createIssuesCopy = () => {
-    return this.state.issues.slice();
+  toggleIssueCompletion = (e) => {
+    const index = getIndex(e.target.id, this.state.issues);
+    const newIssues = createIssuesCopy(this.state.issues);
+    newIssues[index].completed = !newIssues[index].completed;
+    this.props.putNote({ id, title, issues: newIssues });
   };
 
   setIssuesInState = (issues) => {
     this.setState({ issues });
-  };
-
-  toggleIssueCompletion = (e) => {
-    const { id, title } = this.props.note;
-    const index = this.getIndex(e.target.id);
-    const newIssues = this.createIssuesCopy();
-    newIssues[index].completed = !newIssues[index].completed;
-    this.props.putNote({ id, title, issues: newIssues });
-  };
+    };
 
   renderIncompleteIssues = (issues) => {
     return issues.filter((issue) => !issue.completed)
