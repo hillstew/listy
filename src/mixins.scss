@@ -1,0 +1,9 @@
+@mixin fontStyling ($color, $size) {
+    color: $color;
+    font-size: $size;
+};
+
+@mixin dimensions ($height, $width) {
+    height: $height;
+    width: $width;
+};

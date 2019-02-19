@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import './normalize.css';
 @import './variables';
+@import './mixins.scss';
 @import './Components/AlternateScreen/AlternateScreen.scss';
 @import './Containers/NotesSection/NotesSection.scss';
 @import './Containers/Note/Note.scss';
@@ -8,3 +9,7 @@
 @import './Components/Issue/Issue.scss';
 @import './Components/Header/Header.scss';
 @import './Containers/App/App.scss';
+
+* {
+    font-family: $main-font;
+}

@@ -1,25 +1,19 @@
 header {
+  @include dimensions(200px, 90%);
   background: linear-gradient(#939faf, $main-grey);
-  position: fixed;
   border: 10px solid #FFF;
   border-radius: 0 0 30px 30px;
   border-top: none;
-  height: 200px;
-  width: 90%;
-  right: 0;
   left: 0;
   margin: 0 auto 5px auto;
+  position: fixed;
+  right: 0;
   z-index: 8;
 }
 
-i {
-  font-family: Font Awesome 5 Free;
-}
-
 .new-note-icon {
+  @include fontStyling($big-plus-icon-color, 60px);
   text-align: center;
-  color: $big-plus-icon-color;
-  font-size: 60px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 
   &:hover {
@@ -28,19 +22,16 @@ i {
 }
 
 #title-text {
-  font-family: $main-font;
-  margin: 0;
-  font-size: 50px;
-  position: relative;
-  color: #FFF;
-  left: 75%;
-  top: 160px;
-  width: 130px;
-  height: 40px;
-  text-align: center;
+  @include fontStyling(#FFF, 50px);
+  @include dimensions(40px, 130px);
   background-color: $main-grey;
+  left: 75%;
+  margin: 0;
+  position: relative;
+  text-align: center;
   text-decoration: none;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  top: 160px;
 }
 
 #add-note-link {
@@ -51,5 +42,4 @@ i {
 
 #tooltip {
   font-size: 12px;
-  font-family: $main-font;
 }

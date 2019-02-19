@@ -1,7 +1,7 @@
 li {
-  padding-right: 5px;
   font-size: 14px;
   display: flex;
+  padding-right: 5px;
   justify-content: space-between;
 }
 
@@ -10,29 +10,29 @@ button {
 }
 
 .overlay-div {
-  position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
   left: 0;
+  min-height: 100%;
+  position: fixed;
   top: 0;
   width: 100%;
-  min-height: 100%;
   z-index: 9;
 }
 
 .note-pop-up {
-  position: fixed;
-  width: 400px;
-  min-height: 400px;
-  max-height: 600px;
   background-color: #FFF;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 20px;
+  box-shadow: 2px 2px 8px black;
+  max-height: 600px;
   margin-left: -200px;
   margin-top: -250px;
+  min-height: 400px;
+  padding: 20px;
+  position: fixed;
   left: 50%;
   top: 50%; 
-  box-shadow: 2px 2px 8px black;
+  width: 400px;
   z-index: 10;
 
   .title-input {
@@ -43,8 +43,8 @@ button {
   }
 
   h4 {
-    margin: 10px 0 10px 0;
     font-family: $main-font;
+    margin: 10px 0 10px 0;
   }
 
   input {
@@ -55,10 +55,9 @@ button {
 }
 
 .form-add-icon {
-  text-align: center;
-  color: $main-green;
+  @include fontStyling($main-green, 25px);
   cursor: pointer;
-  font-size: 25px;
+  text-align: center;
   transition-duration: 1s;
 
   &:hover {
@@ -95,84 +94,82 @@ button {
 
 .incomplete-items::-webkit-scrollbar-thumb,
 .completed-items::-webkit-scrollbar-thumb  {
-  border-radius: 8px;
   background-color: rgba(0, 0, 0, .5);
+  border-radius: 8px;
 }
 
 .error-message {
+  bottom: 40px;
   font-family: $main-font;
   position: relative;
-  bottom: 40px;
   text-align: center;
 }
 
 .card-footer {
-  position: absolute;
   bottom: 20px;
+  position: absolute;
   right: 20px;
 }
 
 #drop-down {
-  position: relative;
+  background-color: white;
+  border: 1px solid black;
   bottom: 5px;
   font-family: $main-font;
   margin-right: 10px;
-  border: 1px solid black;
-  background-color: white;
+  position: relative;
 }
 
 .submit-button {
+  @include dimensions(25px, 25px);
   background: url(./images/save-button.png);
   background-size: cover;
   border: none;
   cursor: pointer;
   font-family: $main-font;
-  height: 25px;
-  width: 25px;
   margin-right: 10px;
   transition-duration: 1s;
 
   &:hover {
-    transform: scale(1.3);
     background: url(./images/save-button-green.png);
     background-size: cover;
+    transform: scale(1.3);
   }
 }
 
 .delete-button {
+  @include dimensions(25px, 25px);
   background: url(./images/garbage.png);
   background-size: cover;
   border: none;
   cursor: pointer;
-  height: 25px;
-  width: 25px;
   transition-duration: 1s;
 
   &:hover {
-    transform: scale(1.3);
     background: url(./images/garbage-green.png);
     background-size: cover;
+    transform: scale(1.3);
   }
 }
 
 .white {
- background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .blue {
- background-color: #a7ffeb;
+  background-color: #a7ffeb;
 }
 
 .purple {
- background-color: #d7aefb;
+  background-color: #d7aefb;
 }
 
 .green {
- background-color: #ccff90;
+  background-color: #ccff90;
 }
 
 .red {
- background-color: #f28b82;
+  background-color: #f28b82;
 }
 
 
