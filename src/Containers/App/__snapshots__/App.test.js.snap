@@ -7,18 +7,7 @@ exports[`App should match the correct snapshot 1`] = `
     <Switch>
       <Route
         component={[Function]}
-        exact={true}
         path="/"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/new-note"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/notes/:id"
       />
       <Route
         path="*"
@@ -30,8 +19,8 @@ exports[`App should match the correct snapshot 1`] = `
       />
     </Switch>
     <Route
+      component={[Function]}
       path="/new-note"
-      render={[Function]}
     />
     <Route
       path="/notes/:id"

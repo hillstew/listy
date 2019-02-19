@@ -12,7 +12,7 @@ exports[`Issue should match the correct snapshot 1`] = `
       onClick={[MockFunction]}
     />
     <input
-      maxlength="45"
+      maxLength="45"
       onChange={[MockFunction]}
       placeholder="Add a list item..."
       value=""
