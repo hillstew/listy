@@ -5,7 +5,7 @@ An app created with both front-end and back-end frameworks which allows users to
 ### Set-Up Backend:
 - Clone https://github.com/hillstew/listy-api
 - Run `npm install` from the root directory
-- Run `nmp start` and visit localhost:3001/api/v1/notes in your browser
+- Run `npm start` and visit localhost:3001/api/v1/notes in your browser
 
 ### Set-Up Frontend:
 - Clone this repo  
