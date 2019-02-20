@@ -23,6 +23,9 @@ An app created with both front-end and back-end frameworks which allows users to
 Jest and Supertest 
 Run `npm test` from the root directory  
 
+### Final App
+![app demo](./public/assets/appdemo.gif)
+
 ### Original Assignment: 
 [Trapper Keeper](http://frontend.turing.io/projects/trapper-keeper.html)  
 
