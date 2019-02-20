@@ -24,7 +24,7 @@ Jest and Supertest
 Run `npm test` from the root directory  
 
 ### Final App
-![app demo](https://gfycat.com/brownunkemptdutchshepherddog)
+![app demo]('./public/assets/appdemo.gif')
 
 ### Original Assignment: 
 [Trapper Keeper](http://frontend.turing.io/projects/trapper-keeper.html)  
