@@ -2,20 +2,67 @@
 
 exports[`Note Note component should match the correct snapshot 1`] = `
 <div
-  className="note-card undefined"
+  className="note-card white"
 >
   <h3>
     Title
   </h3>
   <ul
     className="incomplete-list"
-  />
+  >
+    <li
+      id="1"
+      key="1"
+    >
+      <div
+        className="issue-body"
+      >
+        <i
+          className="fas fa-square"
+          id="1"
+          onClick={[Function]}
+        />
+        issue text
+      </div>
+    </li>
+  </ul>
   <ul
     className="completed-list"
-  />
+  >
+    <li
+      id="2"
+      key="2"
+    >
+      <div
+        className="issue-body"
+      >
+        <i
+          className="fas fa-check-square"
+          id="2"
+          onClick={[Function]}
+        />
+        more issue text
+      </div>
+    </li>
+    <li
+      id="3"
+      key="3"
+    >
+      <div
+        className="issue-body"
+      >
+        <i
+          className="fas fa-check-square"
+          id="3"
+          onClick={[Function]}
+        />
+        text
+      </div>
+    </li>
+  </ul>
   <Link
     replace={false}
-    to="/notes/undefined"
+    to="/notes/1"
   >
     <button
       className="edit-button-note"
