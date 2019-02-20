@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { putNote }  from '../../thunks/putNote';
 import { getIndex, createIssuesCopy } from '../../Helpers/functions';
 
-export const Note = ({note, putNote}) => {
-  const { id, title, color, issues } = note;
+export class Note extends Component {
+  constructor(props) {
+    super(props)
+  };
 
-  const toggleIssueCompletion = (e) => {
+  toggleIssueCompletion = (e) => {
+    const { id, title, color, issues } = this.props.note;
     const index = getIndex(e.target.id, issues);
     const newIssues = createIssuesCopy(issues);
     newIssues[index].completed = !newIssues[index].completed;
-    putNote({ id, title, color, issues: newIssues });
+    this.props.putNote({ id, title, color, issues: newIssues });
   };
-
-  const renderIssues = (completed) => {
+  
+  renderIssues = (completed) => {
     const iconClass = completed ? 'fas fa-check-square': 'fas fa-square'; 
-    return issues.filter((issue) => issue.completed === completed)
+    return this.props.note.issues
+      .filter(issue => issue.completed === completed)
       .map((issue) => (
         <li key={issue.id} id={issue.id}>
           <div className='issue-body'>
             <i
               className={iconClass}
-              onClick={toggleIssueCompletion}
+              onClick={this.toggleIssueCompletion}
               id={issue.id}
             />
             {issue.body}
@@ -33,16 +37,18 @@ export const Note = ({note, putNote}) => {
     )
   };
 
-  return (
-    <div className={`note-card ${color}`}>
-      <h3>{title}</h3>
-      <ul className='incomplete-list'>{renderIssues(false)}</ul>
-      <ul className='completed-list'>{renderIssues(true)}</ul>
-      <Link to={`/notes/${note.id}`}>
-        <button className='edit-button-note' />
-      </Link>
-    </div>
-  )
+  render() {
+    return (
+      <div className={`note-card ${this.props.note.color}`}>
+        <h3>{this.props.note.title}</h3>
+        <ul className='incomplete-list'>{this.renderIssues(false)}</ul>
+        <ul className='completed-list'>{this.renderIssues(true)}</ul>
+        <Link to={`/notes/${this.props.note.id}`}>
+          <button className='edit-button-note' />
+        </Link>
+      </div>
+    )
+  }
 }
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -53,5 +59,57 @@ export default connect(null, mapDispatchToProps)(Note);
 
 Note.propTypes = {
   note: PropTypes.object,
-  updateNote: PropTypes.func
+  putNote: PropTypes.func
 };
+
+// FUNCTIONAL
+// const toggleIssueCompletion = (e, issues, id, title, color) => {
+//   const index = getIndex(e.target.id, issues);
+//   const newIssues = createIssuesCopy(issues);
+//   newIssues[index].completed = !newIssues[index].completed;
+//   putNote({ id, title, color, issues: newIssues });
+// };
+
+// const renderIssues = (completed, issues, id, title, color) => {
+//   const iconClass = completed ? 'fas fa-check-square': 'fas fa-square'; 
+//   return issues.filter(issue => issue.completed === completed)
+//     .map(issue => (
+//       <li key={issue.id} id={issue.id}>
+//         <div className='issue-body'>
+//           <i
+//             className={iconClass}
+//             onClick={(e) => toggleIssueCompletion(e, issues, id, title, color)}
+//             id={issue.id}
+//           />
+//           {issue.body}
+//         </div>
+//       </li>
+//     )
+//   )
+// };
+
+// export const Note = ({note}) => {
+//   const incompleteIssues = renderIssues(false, note.issues, note.id, note.title, note.color);
+//   const completeIssues = renderIssues(true, note.issues, note.id, note.title, note.color)
+//   return (
+//     <div className={`note-card ${note.color}`}>
+//       <h3>{note.title}</h3>
+//       <ul className='incomplete-list'>{incompleteIssues}</ul>
+//       <ul className='completed-list'>{completeIssues}</ul>
+//       <Link to={`/notes/${note.id}`}>
+//         <button className='edit-button-note' />
+//       </Link>
+//     </div>
+//   )
+// }
+
+// export const mapDispatchToProps = (dispatch) => ({
+//   putNote: (note) => dispatch(putNote(note)),
+// });
+
+// export default connect(null, mapDispatchToProps)(Note);
+
+// Note.propTypes = {
+//   note: PropTypes.object,
+//   putNote: PropTypes.func
+// };
